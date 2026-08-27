@@ -1,43 +1,4 @@
-{
-  "name": "vivir-en-plenitud-calculator",
-  "version": "1.0.0",
-  "description": "Calculadora Energética de Vivir en Plenitud",
-  "main": "index.html",
-  "scripts": {
-    "start": "npx serve .",
-    "build": "echo 'Build static complete'"
-  },
-  "keywords": [
-    "plenitud",
-    "energia",
-    "calculadora",
-    "matriz"
-  ],
-  "author": "Vivir en Plenitud",
-  "license": "MIT",
-  "dependencies": {}
-}
-```eof
 
-```json:vercel.json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
-}
-```eof
-
-```html:index.html
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
@@ -747,4 +708,3 @@
     </script>
 </body>
 </html>
-```eof
