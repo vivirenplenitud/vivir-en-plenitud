@@ -1,0 +1,9 @@
+{
+  "name": "vivir-en-plenitud",
+  "version": "1.0.0",
+  "description": "Calculadora energética y bienestar personal",
+  "private": true,
+  "scripts": {
+    "start": "echo 'No build required'"
+  }
+}
