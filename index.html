@@ -1,573 +1,1652 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yo Vivo en Plenitud - Mapa Energético</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        plenitud: {
-                            bgLight: '#fdfbf7',
-                            cardLight: '#ffffff',
-                            border: '#e8dfd8',
-                            rosaviejo: '#c47b7b',
-                            rosaviejoDark: '#9e5858',
-                            rosaviejoSoft: '#f7eded',
-                            gold: '#b8860b',
-                            goldLight: '#d4af37',
-                            goldSoft: '#fdf9ed',
-                            textDark: '#2c2220',
-                            textMuted: '#6e6360',
-                        }
-                    },
-                    fontFamily: {
-                        cinzel: ['Cinzel', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #fdfbf7;
-            color: #2c2220;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .gold-btn {
-            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-            color: #ffffff;
-        }
-        .gold-btn:hover {
-            background: linear-gradient(135deg, #e0bc46 0%, #a37505 100%);
-        }
+<title>YO VIVO EN PLENITUD | Mapa Energético</title>
 
-        .rosa-btn {
-            background: linear-gradient(135deg, #c47b7b 0%, #9e5858 100%);
-            color: #ffffff;
-        }
-        .rosa-btn:hover {
-            background: linear-gradient(135deg, #d18888 0%, #8c4b4b 100%);
-        }
+<style>
 
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #fdfbf7;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #c47b7b;
-            border-radius: 3px;
-        }
-    </style>
+:root{
+    --crema:#faf7f2;
+    --blanco:#fffdf9;
+    --texto:#332b28;
+    --texto-suave:#756862;
+
+    --rosa:#b96d77;
+    --rosa-claro:#f4e4e5;
+
+    --terracota:#c98276;
+    --terracota-claro:#f3dfda;
+
+    --dorado:#c79a35;
+    --dorado-claro:#f6ebcf;
+
+    --borde:#dfd3ca;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:var(--crema);
+    color:var(--texto);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+header{
+    background:var(--blanco);
+    border-bottom:1px solid var(--borde);
+    padding:18px 16px;
+}
+
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.logo{
+    font-family:Georgia,serif;
+    font-size:clamp(26px,5vw,44px);
+    line-height:.95;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:var(--rosa);
+}
+
+.badge{
+    border:1px solid var(--dorado);
+    color:#9d741c;
+    background:#fffdf6;
+    border-radius:30px;
+    padding:11px 18px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+main{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    padding:18px 12px 35px;
+}
+
+.card{
+    background:var(--blanco);
+    border:1px solid var(--borde);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:16px;
+    box-shadow:0 3px 12px rgba(80,55,40,.05);
+}
+
+.title{
+    font-family:Georgia,serif;
+    font-size:clamp(28px,5vw,42px);
+    text-align:center;
+    margin:0;
+}
+
+.subtitle{
+    text-align:center;
+    color:var(--texto-suave);
+    margin:8px 0 20px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+}
+
+label{
+    display:block;
+    font-size:12px;
+    color:var(--texto-suave);
+    margin-bottom:5px;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px 10px;
+    border:1px solid #d7cbc2;
+    border-radius:12px;
+    background:white;
+    color:var(--texto);
+    font-size:16px;
+}
+
+.calculate{
+    width:100%;
+    margin-top:12px;
+    padding:15px;
+    border:0;
+    border-radius:12px;
+    background:var(--rosa);
+    color:white;
+    font-weight:800;
+    font-size:15px;
+    cursor:pointer;
+}
+
+/* ================================
+   MATRIZ / ESTRELLA
+================================ */
+
+.matrix-card{
+    padding:14px;
+}
+
+.matrix-title{
+    font-family:Georgia,serif;
+    text-align:center;
+    font-size:clamp(24px,5vw,34px);
+    margin:5px 0 12px;
+}
+
+.matrix-container{
+    width:100%;
+    max-width:820px;
+    margin:auto;
+}
+
+.matrix-container svg{
+    display:block;
+    width:100%;
+    height:auto;
+}
+
+.matrix-letter{
+    font-family:Georgia,serif;
+    font-weight:bold;
+    fill:#332b28;
+}
+
+.matrix-label{
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    fill:#765c56;
+    letter-spacing:.4px;
+}
+
+.matrix-small{
+    font-family:Arial,sans-serif;
+    fill:#776963;
+}
+
+.lock-text{
+    font-family:Arial,sans-serif;
+    font-size:16px;
+}
+
+.matrix-note{
+    text-align:center;
+    color:var(--texto-suave);
+    font-size:12px;
+    margin:5px auto 2px;
+}
+
+/* ================================
+   ESENCIA
+================================ */
+
+.essence-card{
+    border:1.5px solid var(--dorado);
+    background:#fffdf8;
+}
+
+.essence-header{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.essence-circle{
+    width:82px;
+    height:82px;
+    flex:none;
+
+    border:2px solid var(--dorado);
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-family:Georgia,serif;
+    font-size:48px;
+    color:#a47718;
+}
+
+.essence-title{
+    font-family:Georgia,serif;
+    color:#9c741c;
+    font-size:23px;
+    margin:0;
+}
+
+.essence-number{
+    font-family:Georgia,serif;
+    font-size:52px;
+    font-weight:bold;
+    color:#a47718;
+    line-height:1;
+    margin-top:4px;
+}
+
+.essence-box{
+    margin-top:17px;
+    background:var(--rosa-claro);
+    border:1px solid #e2c4c7;
+    border-radius:15px;
+    padding:17px;
+}
+
+.essence-box strong{
+    color:#a34f5b;
+    font-size:13px;
+}
+
+.essence-box p{
+    margin:9px 0 0;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* ================================
+   LEYENDA
+================================ */
+
+.legend{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px 20px;
+
+    background:#fffafa;
+    border:1px solid #e4cdd0;
+    border-radius:14px;
+
+    padding:13px;
+    margin-bottom:16px;
+
+    font-size:12px;
+    color:#6d625e;
+}
+
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.legend-circle{
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--rosa-claro);
+    border:1.5px solid var(--rosa);
+}
+
+/* ================================
+   OFERTAS
+================================ */
+
+.offers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.offer{
+    border:1px solid #dfbdc2;
+    border-radius:18px;
+    padding:19px;
+    background:#fff8f8;
+}
+
+.offer.complete{
+    border-color:#dfc77f;
+    background:#fffdf5;
+}
+
+.offer h3{
+    font-family:Georgia,serif;
+    margin:0;
+    font-size:20px;
+    color:#a64e59;
+}
+
+.offer.complete h3{
+    color:#a47718;
+}
+
+.price{
+    font-family:Georgia,serif;
+    font-size:36px;
+    font-weight:bold;
+    margin:7px 0;
+    color:#a64e59;
+}
+
+.complete .price{
+    color:#a47718;
+}
+
+.offer ul{
+    margin:8px 0;
+    padding-left:19px;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.buy{
+    display:block;
+    text-align:center;
+    text-decoration:none;
+    color:white;
+    background:var(--rosa);
+    border-radius:12px;
+    padding:13px 10px;
+    font-size:12px;
+    font-weight:800;
+    margin-top:14px;
+}
+
+.complete .buy{
+    background:var(--dorado);
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    color:#887a73;
+    font-size:11px;
+}
+
+/* ================================
+   MÓVIL
+================================ */
+
+@media(max-width:650px){
+
+    header{
+        padding:14px 10px;
+    }
+
+    .header-inner{
+        align-items:flex-start;
+    }
+
+    .logo{
+        font-size:27px;
+    }
+
+    .badge{
+        font-size:11px;
+        padding:8px 10px;
+    }
+
+    main{
+        padding:9px 7px 25px;
+    }
+
+    .card{
+        padding:12px;
+        border-radius:17px;
+    }
+
+    .form-grid{
+        gap:6px;
+    }
+
+    input,
+    select{
+        padding:11px 6px;
+        font-size:14px;
+    }
+
+    .matrix-card{
+        padding:7px;
+    }
+
+    .matrix-title{
+        font-size:23px;
+    }
+
+    .essence-header{
+        align-items:flex-start;
+    }
+
+    .essence-circle{
+        width:65px;
+        height:65px;
+        font-size:38px;
+    }
+
+    .essence-title{
+        font-size:18px;
+    }
+
+    .essence-number{
+        font-size:43px;
+    }
+
+    .essence-box{
+        padding:13px;
+    }
+
+    .offers{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-plenitud-rosaviejoSoft selection:text-plenitud-rosaviejoDark">
 
-    <!-- Header -->
-    <header class="w-full border-b border-plenitud-border bg-white sticky top-0 z-40 shadow-sm">
-        <div class="max-w-4xl mx-auto px-3 py-2.5 flex items-center justify-between">
-            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="scrollToTop()">
-                <div class="w-8 h-8 rounded-full bg-plenitud-rosaviejoSoft border border-plenitud-rosaviejo/40 flex items-center justify-center flex-shrink-0">
-                    <i class="fa-solid fa-butterfly text-sm text-plenitud-rosaviejo"></i>
-                </div>
-                <div>
-                    <h1 class="font-cinzel text-base sm:text-lg font-bold tracking-wide text-plenitud-textDark">
-                        YO VIVO EN <span class="text-plenitud-rosaviejo">PLENITUD</span>
-                    </h1>
-                </div>
-            </div>
-            
-            <span class="text-[11px] font-semibold text-plenitud-gold bg-plenitud-goldSoft px-2.5 py-1 rounded-full border border-plenitud-goldLight/30">
-                Mapa Energético
-            </span>
-        </div>
-    </header>
+<body>
 
-    <!-- Main Content -->
-    <main class="max-w-3xl mx-auto px-3 py-4 flex-grow w-full">
-        
-        <!-- Form Section -->
-        <section class="mb-6 text-center">
-            <h2 class="font-cinzel text-xl sm:text-3xl font-bold text-plenitud-textDark mb-1.5">
-                MAPA ENERGÉTICO
-            </h2>
-            <p class="text-plenitud-textMuted text-xs sm:text-sm mb-4 max-w-lg mx-auto leading-relaxed">
-                Ingresa tu fecha de nacimiento para desvelar la estructura de tu alma y analizar tu canal de Esencia personal.
-            </p>
+<header>
 
-            <div class="bg-white border border-plenitud-border p-4 sm:p-5 rounded-2xl shadow-sm max-w-md mx-auto">
-                <form id="calcForm" class="space-y-3.5" onsubmit="calculateMatrix(event)">
-                    <div>
-                        <label class="block text-left text-[11px] font-bold uppercase tracking-wider text-plenitud-textMuted mb-1.5">
-                            Fecha de Nacimiento
-                        </label>
-                        <div class="grid grid-cols-3 gap-2">
-                            <select id="birthDay" required class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
-                                <option value="" disabled selected>Día</option>
-                            </select>
-                            <select id="birthMonth" required class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
-                                <option value="" disabled selected>Mes</option>
-                                <option value="1">Enero (1)</option>
-                                <option value="2">Febrero (2)</option>
-                                <option value="3">Marzo (3)</option>
-                                <option value="4">Abril (4)</option>
-                                <option value="5">Mayo (5)</option>
-                                <option value="6">Junio (6)</option>
-                                <option value="7">Julio (7)</option>
-                                <option value="8">Agosto (8)</option>
-                                <option value="9">Septiembre (9)</option>
-                                <option value="10">Octubre (10)</option>
-                                <option value="11">Noviembre (11)</option>
-                                <option value="12">Diciembre (12)</option>
-                            </select>
-                            <input type="number" id="birthYear" placeholder="Año" min="1920" max="2026" required
-                                   class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
-                        </div>
-                    </div>
+<div class="header-inner">
 
-                    <button type="submit" 
-                            class="w-full rosa-btn font-bold py-2.5 px-4 rounded-lg shadow-sm hover:opacity-95 transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-sparkles text-xs"></i> Calcular Mapa Energético
-                    </button>
-                </form>
-            </div>
-        </section>
+<div class="logo">
+YO VIVO EN<br>
+<span>PLENITUD</span>
+</div>
 
-        <!-- Results Section -->
-        <div id="resultsSection" class="hidden space-y-6">
-            
-            <!-- Octagram SVG View -->
-            <div class="bg-white border border-plenitud-border p-4 rounded-2xl flex flex-col items-center justify-center relative shadow-sm max-w-md mx-auto">
-                <h3 class="font-cinzel text-base sm:text-lg text-plenitud-textDark font-bold mb-1 text-center">
-                    Tu Diagrama Energético
-                </h3>
-                
-                <div class="w-full max-w-[280px] sm:max-w-[320px] aspect-square relative flex items-center justify-center my-1">
-                    <svg viewBox="0 0 450 450" class="w-full h-full">
-                        <circle cx="225" cy="225" r="170" fill="none" stroke="#e8dfd8" stroke-width="1.5" stroke-dasharray="4,4"/>
-                        <rect x="110" y="110" width="230" height="230" fill="none" stroke="#c47b7b" stroke-width="1.5" transform="rotate(45 225 225)"/>
-                        <rect x="110" y="110" width="230" height="230" fill="none" stroke="#b8860b" stroke-width="1.5"/>
-                        
-                        <line x1="110" y1="225" x2="340" y2="225" stroke="#c47b7b" stroke-width="1" stroke-dasharray="3,3"/>
-                        <line x1="225" y1="110" x2="225" y2="340" stroke="#c47b7b" stroke-width="1" stroke-dasharray="3,3"/>
-                        <line x1="145" y1="145" x2="305" y2="305" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,3"/>
-                        <line x1="305" y1="145" x2="145" y2="305" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,3"/>
+<div class="badge">
+✦ Mapa Energético
+</div>
 
-                        <!-- NODE A: PERSONALIDAD -->
-                        <text x="75" y="175" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">PERSONALIDAD (A)</text>
-                        <circle cx="75" cy="225" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
-                        <text id="nodeA" x="75" y="225" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
+</div>
 
-                        <!-- NODE B: ESPIRITUALIDAD -->
-                        <text x="225" y="35" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">ESPIRITUALIDAD (B)</text>
-                        <circle cx="225" cy="75" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
-                        <text id="nodeB" x="225" y="75" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
+</header>
 
-                        <!-- NODE C: TALENTO MATERIAL -->
-                        <text x="375" y="175" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">TALENTO (C)</text>
-                        <circle cx="375" cy="225" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
-                        <text id="nodeC" x="375" y="225" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
 
-                        <!-- NODE D: COLA KÁRMICA -->
-                        <circle cx="225" cy="375" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
-                        <text id="nodeD" x="225" y="375" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
-                        <text x="225" y="415" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">COLA KÁRMICA (D)</text>
+<main>
 
-                        <!-- NODE E: ESENCIA CENTRAL (GRATUITO) -->
-                        <text x="225" y="170" text-anchor="middle" fill="#b8860b" font-size="11" font-weight="700" font-family="'Cinzel', serif">ESENCIA (E)</text>
-                        <circle cx="225" cy="225" r="24" fill="#fdf9ed" stroke="#b8860b" stroke-width="3"/>
-                        <text id="nodeE" x="225" y="225" text-anchor="middle" dominant-baseline="central" fill="#b8860b" font-size="16" font-weight="bold">?</text>
 
-                        <!-- R1 AMOR -->
-                        <circle cx="250" cy="270" r="14" fill="#ffffff" stroke="#c47b7b" stroke-width="1.5"/>
-                        <text id="nodeR1" x="250" y="270" text-anchor="middle" dominant-baseline="central" fill="#c47b7b" font-size="9" font-weight="bold">🔒</text>
-                        <text x="240" y="300" text-anchor="end" fill="#c47b7b" font-size="10" font-weight="bold">AMOR</text>
+<!-- ================================
+     CALCULADORA
+================================ -->
 
-                        <!-- R2 DINERO -->
-                        <circle cx="270" cy="250" r="14" fill="#ffffff" stroke="#b8860b" stroke-width="1.5"/>
-                        <text id="nodeR2" x="270" y="250" text-anchor="middle" dominant-baseline="central" fill="#b8860b" font-size="9" font-weight="bold">🔒</text>
-                        <text x="295" y="255" text-anchor="start" fill="#b8860b" font-size="10" font-weight="bold">DINERO</text>
-                    </svg>
-                </div>
-            </div>
+<section class="card">
 
-            <!-- FREE REVEALED POINT E CARD -->
-            <div class="bg-white border-2 border-plenitud-gold/40 p-4 sm:p-6 rounded-2xl shadow-sm space-y-4">
-                <div class="flex items-center gap-3 border-b border-plenitud-border pb-3">
-                    <span class="w-9 h-9 rounded-full bg-plenitud-goldSoft text-plenitud-gold border border-plenitud-gold/30 flex items-center justify-center font-bold font-cinzel text-lg">
-                        E
-                    </span>
-                    <div>
-                        <span class="text-[10px] uppercase tracking-wider text-emerald-600 font-bold flex items-center gap-1">
-                            <i class="fa-solid fa-circle-check"></i> Análisis Gratuito Completo
-                        </span>
-                        <h4 class="font-cinzel text-base sm:text-xl font-bold text-plenitud-textDark">
-                            Número de Esencia: <span id="freeNumE" class="text-plenitud-gold">--</span>
-                        </h4>
-                    </div>
-                </div>
+<h1 class="title">
+MAPA ENERGÉTICO
+</h1>
 
-                <!-- Sección 1: Definición Completa de Esencia -->
-                <div class="bg-plenitud-goldSoft/60 p-4 rounded-xl border border-plenitud-gold/20">
-                    <h5 class="text-plenitud-gold font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-gem text-xs"></i> 1. Tu Fuerza Interior y Propósito de Esencia
-                    </h5>
-                    <p id="freeDescE" class="text-xs sm:text-sm leading-relaxed text-plenitud-textDark">
-                        Cargando tu lectura completa...
-                    </p>
-                </div>
+<p class="subtitle">
+Introduce tu fecha de nacimiento y descubre tu Número de Esencia.
+</p>
 
-                <!-- Sección 2: Sombras y Desafíos Kármicos -->
-                <div class="bg-plenitud-rosaviejoSoft p-4 rounded-xl border border-plenitud-rosaviejo/20">
-                    <h5 class="text-plenitud-rosaviejoDark font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-triangle-exclamation text-xs"></i> 2. Bloqueos Energéticos a Trascender (Sombra)
-                    </h5>
-                    <p id="freeShadowE" class="text-xs sm:text-sm leading-relaxed text-plenitud-textDark">
-                        Cargando tus aspectos en sombra...
-                    </p>
-                </div>
 
-                <!-- Sección 3: Plan de Integración de Esencia -->
-                <div class="bg-plenitud-bgLight p-4 rounded-xl border border-plenitud-border">
-                    <h5 class="text-plenitud-textDark font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                        <i class="fa-solid fa-compass text-xs"></i> 3. Guía Práctica de Integración y Evolución
-                    </h5>
-                    <p id="freeAdviceE" class="text-xs sm:text-sm text-plenitud-textMuted leading-relaxed">
-                        Cargando recomendaciones prácticas...
-                    </p>
-                </div>
-            </div>
+<form id="calcForm">
 
-            <!-- LOCKED POINTS GRID -->
-            <div>
-                <div class="text-center mb-4">
-                    <h4 class="font-cinzel text-lg font-bold text-plenitud-textDark">
-                        Puntos de Tu Mapa Pendientes por Desbloquear
-                    </h4>
-                    <p class="text-xs text-plenitud-textMuted max-w-md mx-auto">
-                        Los siguientes nodos contienen la información sobre tu personalidad externa, karma, talento y canales de abundancia.
-                    </p>
-                </div>
+<div class="form-grid">
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    
-                    <!-- Node A Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">A</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Personalidad (Nodo A)</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Tu proyección externa y primer impacto</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
-                    </div>
+<div>
+<label>Día</label>
 
-                    <!-- Node B Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">B</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Espiritualidad (Nodo B)</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Conexión intuitiva y tareas del alma</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
-                    </div>
+<select id="day" required>
+<option value="">Día</option>
+</select>
 
-                    <!-- Node C Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">C</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Talento Material (Nodo C)</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Habilidades prácticas y manifestación</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
-                    </div>
+</div>
 
-                    <!-- Node D Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">D</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Cola Kármica (Nodo D)</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Lecciones pendientes a resolver</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
-                    </div>
 
-                    <!-- R1 Amor Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold text-[10px] flex items-center justify-center border border-plenitud-rosaviejo/20">R1</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Canal del Amor</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Pareja ideal y dinámicas afectivas</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-heart text-plenitud-rosaviejo text-xs"></i>
-                    </div>
+<div>
 
-                    <!-- R2 Dinero Card -->
-                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
-                        <div class="flex items-center gap-2.5">
-                            <span class="w-7 h-7 rounded-full bg-plenitud-goldSoft text-plenitud-gold font-bold text-[10px] flex items-center justify-center border border-plenitud-gold/20">R2</span>
-                            <div>
-                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Canal del Dinero</h5>
-                                <p class="text-[10px] text-plenitud-textMuted">Flujo financiero y vocación</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-sack-dollar text-plenitud-gold text-xs"></i>
-                    </div>
+<label>Mes</label>
 
-                </div>
-            </div>
+<select id="month" required>
 
-            <!-- PRICING OPTIONS -->
-            <div class="bg-white border border-plenitud-border p-5 rounded-2xl text-center space-y-4 shadow-sm">
-                <div>
-                    <span class="text-[10px] uppercase tracking-widest text-plenitud-rosaviejo font-bold">
-                        Opciones de Desbloqueo
-                    </span>
-                    <h3 class="font-cinzel text-lg sm:text-xl font-bold text-plenitud-textDark mt-0.5">
-                        Completa tu Lectura Energética
-                    </h3>
-                </div>
+<option value="">Mes</option>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left pt-1">
-                    
-                    <!-- Basic Option -->
-                    <div class="bg-plenitud-bgLight border border-plenitud-border p-4 rounded-xl flex flex-col justify-between">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-cinzel font-bold text-plenitud-textDark text-sm">Puntos Clave</h4>
-                                <span class="bg-white text-plenitud-gold font-bold text-[10px] px-2 py-0.5 rounded border border-plenitud-border">7 Nodos</span>
-                            </div>
-                            <div class="text-2xl font-extrabold text-plenitud-textDark mb-3">
-                                17,99 €
-                            </div>
-                            <ul class="text-xs text-plenitud-textMuted space-y-1.5 mb-4">
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Lectura de Personalidad (A)</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Lectura de Espiritualidad (B)</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Talento Material (C)</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Análisis Cola Kármica (D)</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Canales de Amor (R1) y Dinero (R2)</li>
-                            </ul>
-                        </div>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full gold-btn font-bold py-2.5 px-3 rounded-lg text-xs uppercase tracking-wider shadow-sm transition-all">
-                            Desbloquear (17,99 €)
-                        </button>
-                    </div>
+<option value="1">Enero (1)</option>
+<option value="2">Febrero (2)</option>
+<option value="3">Marzo (3)</option>
+<option value="4">Abril (4)</option>
+<option value="5">Mayo (5)</option>
+<option value="6">Junio (6)</option>
+<option value="7">Julio (7)</option>
+<option value="8">Agosto (8)</option>
+<option value="9">Septiembre (9)</option>
+<option value="10">Octubre (10)</option>
+<option value="11">Noviembre (11)</option>
+<option value="12">Diciembre (12)</option>
 
-                    <!-- Complete Option -->
-                    <div class="bg-plenitud-rosaviejoSoft border border-plenitud-rosaviejo/40 p-4 rounded-xl flex flex-col justify-between relative">
-                        <div>
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="font-cinzel font-bold text-plenitud-textDark text-sm">Mapa Completo de Vida</h4>
-                                <span class="bg-plenitud-rosaviejo text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded">Recomendado</span>
-                            </div>
-                            <div class="text-2xl font-extrabold text-plenitud-textDark mb-3">
-                                40,00 € <span class="text-xs text-plenitud-textMuted font-normal line-through">65,00 €</span>
-                            </div>
-                            <ul class="text-xs text-plenitud-textDark space-y-1.5 mb-4">
-                                <li class="flex items-center gap-1.5 font-bold"><i class="fa-solid fa-star text-plenitud-rosaviejo text-[10px]"></i> TODOS LOS NÚMEROS CLAVES DESDE A HASTA T</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Mapa de Misión de Vida Completo</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Pronóstico de Ciclos Vitales</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Ejercicios de armonización</li>
-                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Informe descargable en PDF</li>
-                            </ul>
-                        </div>
-                        <button onclick="openCheckoutModal('40.00')" class="w-full rosa-btn font-bold py-2.5 px-3 rounded-lg text-xs uppercase tracking-wider shadow-sm transition-all">
-                            Obtener Todo (40,00 €)
-                        </button>
-                    </div>
+</select>
 
-                </div>
-            </div>
+</div>
 
-        </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="w-full border-t border-plenitud-border bg-white py-4 mt-8 text-center text-xs text-plenitud-textMuted">
-        <div class="max-w-4xl mx-auto px-3 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p>© 2026 Yo Vivo en Plenitud. Todos los derechos reservados.</p>
-            <div class="flex gap-3 text-[11px]">
-                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Privacidad</a>
-                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Términos</a>
-                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Contacto</a>
-            </div>
-        </div>
-    </footer>
+<div>
 
-    <!-- JavaScript Script -->
-    <script>
-        // Poblar el selector de días
-        const daySelect = document.getElementById('birthDay');
-        for (let i = 1; i <= 31; i++) {
-            let opt = document.createElement('option');
-            opt.value = i;
-            opt.innerHTML = i;
-            daySelect.appendChild(opt);
-        }
+<label>Año</label>
 
-        // Función para reducir un número a un arcana (1 a 22)
-        function reduceToArcana(num) {
-            num = Math.abs(num);
-            while (num > 22) {
-                let sum = 0;
-                let str = num.toString();
-                for (let c of str) {
-                    sum += parseInt(c, 10);
-                }
-                num = sum;
-            }
-            return num === 0 ? 22 : num;
-        }
+<input
+id="year"
+type="number"
+min="1900"
+max="2026"
+placeholder="Ej. 1965"
+required
+>
 
-        function calculateMatrix(event) {
-            event.preventDefault();
-            
-            const day = parseInt(document.getElementById('birthDay').value);
-            const month = parseInt(document.getElementById('birthMonth').value);
-            const yearStr = document.getElementById('birthYear').value;
-            
-            if (!day || !month || !yearStr) return;
+</div>
 
-            let yearSum = 0;
-            for (let char of yearStr) {
-                yearSum += parseInt(char, 10);
-            }
+</div>
 
-            // Puntos de la Matriz
-            const A = reduceToArcana(day);
-            const B = reduceToArcana(month);
-            const C = reduceToArcana(yearSum);
-            const D = reduceToArcana(A + B + C);
-            const E = reduceToArcana(A + B + C + D);
 
-            // SVG Update
-            document.getElementById('nodeE').textContent = E;
-            document.getElementById('freeNumE').textContent = E;
+<button class="calculate" type="submit">
+✦ CALCULAR MI MAPA ENERGÉTICO
+</button>
 
-            // DICCIONARIOS EXTENDIDOS Y COMPLETOS PARA EL NODO DE ESENCIA (E)
+</form>
 
-            const descriptionsE = {
-                1: "Arcano 1 - El Mago: Representa el poder de la manifestación, la iniciativa y el intelecto creador. Tu núcleo energético posee una chispa divina capaz de materializar ideas abstractas en proyectos tangibles a través del uso consciente de la palabra y la intención.",
-                2: "Arcano 2 - La Sacerdotisa: Canal de intuición pura, sabiduría profunda y misterio interior. Tienes una sensibilidad especial para percibir lo invisible, captar las emociones subyacentes en las personas y acceder al conocimiento esotérico guardado en tu alma.",
-                3: "Arcano 3 - La Emperatriz: Es la energía de la creación ilimitada, la belleza, la nutrición y la abundancia en todas sus formas. Tu esencia florece al crear bienestar, expresar tu arte y mantener una profunda conexión con la fertilidad de la naturaleza.",
-                4: "Arcano 4 - El Emperador: Representa el orden, la estructura, la autoridad moral y el dominio del plano material. Tu fuerza interior se manifiesta en la capacidad de construir bases sólidas, organizar sistemas eficientes y proteger a quienes dependen de ti.",
-                5: "Arcano 5 - El Sumosacerdote: Canal del maestro espiritual, la ética y la transmisión del conocimiento superior. Tu esencia busca comprender las leyes universales y guiar a otros a través del ejemplo, el consejo sabio y la rectitud personal.",
-                6: "Arcano 6 - Los Enamorados: Tu centro energético vibra en el amor incondicional, la belleza de las relaciones y la toma de decisiones conscientes desde el corazón. Tu propósito implica aprender a elegir siempre la unidad sobre la división.",
-                7: "Arcano 7 - El Carro: Es la energía de la victoria, el movimiento constante y la superación personal. Tu esencia está diseñada para asumir el liderazgo de tu vida, vencer resistencias y avanzar decididamente hacia objetivos elevados.",
-                8: "Arcano 8 - La Justicia: Representa el equilibrio kármico, la claridad intelectual y la búsqueda inquebrantable de la verdad. Tu núcleo energético te exige actuar con integridad, imparcialidad y mantener el orden divino en tu existencia.",
-                9: "Arcano 9 - El Ermitaño: Es el camino del sabio, la luz interior y la madurez espiritual. Tu centro energético requiere momentos de solitud productiva para procesar experiencias y transformarte en un faro de guía para el mundo.",
-                10: "Arcano 10 - La Rueda de la Fortuna: Tu esencia está conectada con el flujo cíclico del universo, la suerte y la sincronía divina. Tienes una habilidad natural para adaptarte a las oportunidades y hacer girar los cambios a tu favor.",
-                11: "Arcano 11 - La Fuerza: Representa el dominio de la naturaleza instintiva mediante la mansedumbre, la paciencia y el amor. Tu verdadero poder no reside en el control rígido, sino en la resistencia serena y el coraje interior.",
-                12: "Arcano 12 - El Colgado: Canal de iluminación interior, empatía profunda y entrega consciente. Posees la valiosa habilidad de ver el mundo desde ángulos no convencionales y hallar sabiduría a través de la pausa estratégica.",
-                13: "Arcano 13 - La Muerte / Transmutación: Tu esencia es un poderoso motor de renovación total. Tienes la facultad intrínseca de soltar lo obsoleto, permitir la muerte de viejos patrones y renacer continuamente con mayor fuerza espiritual.",
-                14: "Arcano 14 - La Templanza: Representa la sanación, la diplomacia y la alquimia emocional. Tu centro energético trabaja unificando opuestos, pacificando ambientes conflictivos y restaurando la serenidad donde exista caos.",
-                15: "Arcano 15 - El Diablo / Magnetismo: Canal de magnetismo personal, pasión intensa y dominio de los recursos materiales. Posees una fuerza atrayente inmensa que, usada en luz, te permite manifestar gran prosperidad y libertad física.",
-                16: "Arcano 16 - La Torre: Es la energía del despertar repentino y la liberación de falsas ilusiones. Tu esencia está capacitada para derribar estructuras que limitan tu crecimiento y reconstruir tu vida sobre verdades firmes.",
-                17: "Arcano 17 - La Estrella: Canal de esperanza, inspiración cósmica y talento brillante. Tu núcleo energético emite una vibración pura de sanación y arte, trayendo luz y fe tanto a tu vida como a quienes se cruzan contigo.",
-                18: "Arcano 18 - La Luna: Representa la imaginación creadora, la intuición profunda y el dominio del subconsciente. Tu esencia habita en el reino de los sueños y la alta sensibilidad psico-emocional.",
-                19: "Arcano 19 - El Sol: Energía de éxito radiante, vitalidad, alegría de vivir y realización visible. Tu centro energético brilla con generosidad, iluminando el camino de los demás y atrayendo abundancia natural.",
-                20: "Arcano 20 - El Juicio: Representa la resurrección, el despertar del llamado del alma y el perdón kármico. Tu esencia está orientada a sanar patrones del linaje familiar y renacer a una vocación más elevada.",
-                21: "Arcano 21 - El Mundo: Es el estado de plenitud total, integración universal y éxito completo. Tu energía abarca horizontes globales y está destinada a cerrar ciclos satisfactoriamente en perfecta armonía.",
-                22: "Arcano 22 - El Loco: Canal de libertad absoluta, inocencia espiritual y fe ciega en el camino divino. Tu esencia es intrépida, sin ataduras, lista siempre para saltar a nuevos comienzos con entusiasmo sin límites."
-            };
+</section>
 
-            const shadowsE = {
-                1: "En sombra: Manipulación verbal, síndrome del impostor, comenzar múltiples proyectos sin concluir ninguno o dudas constantes sobre tu propio talento.",
-                2: "En sombra: Aislamiento emocional, guardar secretos tóxicos, desconfianza en la intuición o pasividad excesiva ante la vida.",
-                3: "En sombra: Control o sobreprotección asfixiante, vanidad superficial, problemas con la figura materna o bloqueos en la creatividad.",
-                4: "En sombra: Rigidez mental, autoritarismo inflexible, miedo al desorden o dificultad para delegar responsabilidades.",
-                5: "En sombra: Dogmatismo, soberbia intelectual, rebeldía sin causa o juzgar severamente las faltas ajenas.",
-                6: "En sombra: Dependencia emocional, indecisión paralizante, codependencia en relaciones o miedo al compromiso genuino.",
-                7: "En sombra: Impulsividad destructiva, agresión verbal, obsesión con el control exterior o abandono ante el primer obstáculo.",
-                8: "En sombra: Juicio implacable hacia uno mismo, resentimiento, frialdad emocional o sensación de vivir injusticias constantes.",
-                9: "En sombra: Aislamiento huraño, miedo a la vejez o a la soledad, rigidez en hábitos y desconfianza social.",
-                10: "En sombra: Fatalismo, sensación de no tener control sobre tu destino, inestabilidad financiera o caer repetidamente en los mismos errores.",
-                11: "En sombra: Represión de emociones, estallidos de rabia incontrolada, autoexigencia feroz o agotamiento físico extremo.",
-                12: "En sombra: Victimización, postergación indefinida, sacrificarse innecesariamente por personas manipuladoras.",
-                13: "En sombra: Resistencia aterrada al cambio, apego a situaciones tóxicas del pasado o miedo paralizante a la pérdida.",
-                14: "En sombra: Impaciencia extrema, falta de moderación, volatilidad emocional o incapacidad para encontrar términos medios.",
-                15: "En sombra: Adicciones, obsesión por el dinero o el poder, manipulaciones sutiles y caer presa de tus propias pasiones descontroladas.",
-                16: "En sombra: Vivenza de crisis destructivas repetitivas por aferrarte a lo que debía caer, soberbia o miedo al derrumbe.",
-                17: "En sombra: Desconexión de la realidad, vivir en fantasías infundadas, pesimismo sobre el futuro o falta de fe en ti.",
-                18: "En sombra: Miedos irracionales, ansiedad por confusión mental, caer en ilusiones engañosas o manipulación emocional.",
-                19: "En sombra: Egotismo exagerado, necesidad destructiva de aprobación constante, quemar a otros con tu intensidad o falta de energía.",
-                20: "En sombra: Carga con culpas del pasado, incapacidad para perdonar los errores de tu linaje o negación a escuchar tu vocación.",
-                21: "En sombra: Sensación de estancamiento en la meta final, perfeccionismo paralizante o miedo a exponerse a un nivel superior.",
-                22: "En sombra: Irresponsabilidad desmedida, inmadurez para asumir las consecuencias, dispersión o huida constante de los problemas."
-            };
 
-            const adviceE = {
-                1: "Establece objetivos concretos a corto plazo y utiliza afirmaciones diarias para canalizar tu poder de decretar sin dispersarte.",
-                2: "Reserva de 10 a 15 minutos de silencio matutino sin pantallas para sintonizar con los mensajes intuitivos de tu cuerpo.",
-                3: "Fomenta actividades donde cuides y crees: jardinería, cocina consciente o proyectos artísticos donde plasmes tu toque estético.",
-                4: "Práctica el soltar el control en tareas secundarias; delega en tu entorno y flexibiliza tu rutina diaria.",
-                5: "Enseña desde la empatía. Cada vez que aprendas algo valioso, compártelo de forma accesible sin imponer tus criterios.",
-                6: "Antes de tomar una decisión importante, pregúntate si eliges desde el miedo a quedarte solo o desde el amor propio.",
-                7: "Visualiza claramente tu meta, pero aprende a disfrutar del trayecto. El descanso programado forma parte de la victoria.",
-                8: "Aplica la compasión antes que el juicio. Perdónate las fallas pasadas; la vida busca equilibrio, no castigo.",
-                9: "Integra la soledad como un templo de recarga, pero ponle fecha de retorno para compartir tu luz con el mundo.",
-                10: "Acepta los altibajos como lecciones de paso. Desarrolla un diario de gratitud para reconocer las coincidencias divinas.",
-                11: "Sana tu relación con el cuerpo. Canaliza la energía excedente con ejercicio físico regular y trata tus límites con amabilidad.",
-                12: "Cambia la postura de '¿por qué me pasa esto a mí?' por '¿qué me enseña esta pausa?'. Establece límites sanos a las demandas externas.",
-                13: "Limpia tus espacios físicos de objetos viejos que ya no utilices como símbolo activo de que estás abierto al renacimiento.",
-                14: "Practica ejercicios de respiración lenta cuando sientas agitación. La ecuanimidad es la llave de tu poder curativo.",
-                15: "Redirecciona tu ambición hacia el servicio de valor. Tu carisma es infinito cuando buscas el beneficio de todos los involucrados.",
-                16: "Acepta las pérdidas del pasado como espacio limpio preparado para construcciones verdaderas y libres de falsedades.",
-                17: "Comparte tus dones creativos públicamente sin temor. Tu brillo honesto es la guía que otros están buscando.",
-                18: "Lleva un registro de tus sueños al despertar y realiza actividades artísticas para canalizar tu riqueza inconsciente.",
-                19: "Cultiva la simplicidad y la calidez en tus tratos. Regala reconocimientos sinceros a las personas que caminan contigo.",
-                20: "Escribe una carta de perdón a tu historia familiar, honrando el aprendizaje y liberándote de cargas que no te corresponden.",
-                21: "Celebra los hitos alcanzados sin minimizar tu esfuerzo. Estás listo para abrirte a una nueva escala de vida.",
-                22: "Confía en los primeros pasos del camino aunque no veas toda la escalera, manteniendo la prudencia en las decisiones clave."
-            };
 
-            document.getElementById('freeDescE').textContent = descriptionsE[E] || "Tu centro energético revela un camino de evolución personal y armonía interior.";
-            document.getElementById('freeShadowE').textContent = shadowsE[E] || "Revisa tus bloqueos emocionales para alinearte con la vibración más elevada de tu número.";
-            document.getElementById('freeAdviceE').textContent = adviceE[E] || "Mantén tus prácticas de conexión diaria para integrar de forma óptima tu arcana central.";
+<!-- ================================
+     ESTRELLA / MATRIZ
+================================ -->
 
-            // Mostrar resultados
-            document.getElementById('resultsSection').classList.remove('hidden');
-            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
-        }
+<section class="card matrix-card">
 
-        // Redirección con los dos enlaces de Stripe proporcionados
-        function openCheckoutModal(price) {
-            let stripeLink17 = "https://buy.stripe.com/00wcN5dT35R47jAenKa3u00";
-            let stripeLink40 = "https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01";
+<h2 class="matrix-title">
+TU MAPA ENERGÉTICO
+</h2>
 
-            if (price === '17.99') {
-                window.open(stripeLink17, '_blank');
-            } else if (price === '40.00') {
-                window.open(stripeLink40, '_blank');
-            }
-        }
 
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+<div class="matrix-container">
+
+<svg
+viewBox="0 0 760 720"
+xmlns="http://www.w3.org/2000/svg"
+aria-label="Matriz energética de A a T"
+>
+
+<!-- CÍRCULO EXTERIOR -->
+
+<circle
+cx="380"
+cy="350"
+r="295"
+fill="none"
+stroke="#e5d9d0"
+stroke-width="2"
+stroke-dasharray="5 7"
+/>
+
+
+<!-- ROMBO PRINCIPAL -->
+
+<polygon
+points="380,55 660,350 380,645 100,350"
+fill="none"
+stroke="#332b28"
+stroke-width="4"
+/>
+
+
+<!-- CUADRADO INTERIOR -->
+
+<rect
+x="205"
+y="175"
+width="350"
+height="350"
+fill="none"
+stroke="#c79a35"
+stroke-width="2"
+/>
+
+
+<!-- EJES -->
+
+<line
+x1="380"
+y1="55"
+x2="380"
+y2="645"
+stroke="#c79a35"
+stroke-width="2"
+stroke-dasharray="7 7"
+/>
+
+<line
+x1="100"
+y1="350"
+x2="660"
+y2="350"
+stroke="#c79a35"
+stroke-width="2"
+stroke-dasharray="7 7"
+/>
+
+
+<!-- DIAGONALES -->
+
+<line
+x1="175"
+y1="145"
+x2="585"
+y2="555"
+stroke="#d39a98"
+stroke-width="1.5"
+/>
+
+<line
+x1="585"
+y1="145"
+x2="175"
+y2="555"
+stroke="#d39a98"
+stroke-width="1.5"
+/>
+
+
+<!-- EDADES -->
+
+<g
+class="matrix-label"
+font-size="13"
+text-anchor="middle"
+>
+
+<text x="380" y="22">20 años</text>
+
+<text x="706" y="350">40 años</text>
+
+<text x="380" y="680">60 años</text>
+
+<text x="42" y="350">0 años</text>
+
+<text x="145" y="105">10 años</text>
+
+<text x="615" y="105">30 años</text>
+
+<text x="615" y="600">50 años</text>
+
+<text x="145" y="600">70 años</text>
+
+</g>
+
+
+<!-- ==========================
+     A PERSONALIDAD
+========================== -->
+
+<circle
+cx="100"
+cy="350"
+r="32"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="3"
+/>
+
+<text
+x="100"
+y="357"
+font-size="28"
+text-anchor="middle"
+class="matrix-letter"
+>
+A
+</text>
+
+<text
+x="100"
+y="307"
+font-size="16"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="100"
+y="397"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+PERSONALIDAD
+</text>
+
+
+<!-- ==========================
+     B ESPIRITUALIDAD
+========================== -->
+
+<circle
+cx="380"
+cy="55"
+r="32"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="3"
+/>
+
+<text
+x="380"
+y="62"
+font-size="28"
+text-anchor="middle"
+class="matrix-letter"
+>
+B
+</text>
+
+<text
+x="380"
+y="13"
+font-size="16"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="380"
+y="103"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+ESPIRITUALIDAD
+</text>
+
+
+<!-- ==========================
+     C TALENTO MATERIAL
+========================== -->
+
+<circle
+cx="660"
+cy="350"
+r="32"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="3"
+/>
+
+<text
+x="660"
+y="357"
+font-size="28"
+text-anchor="middle"
+class="matrix-letter"
+>
+C
+</text>
+
+<text
+x="660"
+y="307"
+font-size="16"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="660"
+y="397"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+TALENTO MATERIAL
+</text>
+
+
+<!-- ==========================
+     D COLA KÁRMICA
+========================== -->
+
+<circle
+cx="380"
+cy="645"
+r="32"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="3"
+/>
+
+<text
+x="380"
+y="652"
+font-size="28"
+text-anchor="middle"
+class="matrix-letter"
+>
+D
+</text>
+
+<text
+x="380"
+y="697"
+font-size="16"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="380"
+y="713"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+COLA KÁRMICA
+</text>
+
+
+<!-- ==========================
+     E ESENCIA - GRATIS
+========================== -->
+
+<circle
+cx="380"
+cy="350"
+r="45"
+fill="#fffdf5"
+stroke="#c79a35"
+stroke-width="4"
+/>
+
+<text
+x="380"
+y="334"
+font-family="Georgia,serif"
+font-size="19"
+font-weight="bold"
+fill="#9d741c"
+text-anchor="middle"
+>
+E
+</text>
+
+<text
+id="svgEssence"
+x="380"
+y="370"
+font-family="Georgia,serif"
+font-size="34"
+font-weight="bold"
+fill="#9d741c"
+text-anchor="middle"
+>
+—
+</text>
+
+<text
+x="380"
+y="410"
+font-size="12"
+font-weight="bold"
+fill="#9d741c"
+text-anchor="middle"
+>
+ESENCIA
+</text>
+
+
+<!-- ==========================
+     F
+========================== -->
+
+<circle cx="175" cy="135" r="24"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="175" y="143"
+font-size="21"
+text-anchor="middle"
+class="matrix-letter">
+F
+</text>
+
+
+<!-- G -->
+
+<circle cx="585" cy="135" r="24"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="585" y="143"
+font-size="21"
+text-anchor="middle"
+class="matrix-letter">
+G
+</text>
+
+
+<!-- H -->
+
+<circle cx="585" cy="565" r="24"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="585" y="573"
+font-size="21"
+text-anchor="middle"
+class="matrix-letter">
+H
+</text>
+
+
+<!-- I -->
+
+<circle cx="175" cy="565" r="24"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="175" y="573"
+font-size="21"
+text-anchor="middle"
+class="matrix-letter">
+I
+</text>
+
+
+<!-- J -->
+
+<circle cx="285" cy="250" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="285" y="257"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+J
+</text>
+
+
+<!-- K -->
+
+<circle cx="475" cy="250" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="475" y="257"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+K
+</text>
+
+
+<!-- L -->
+
+<circle cx="475" cy="450" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="475" y="457"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+L
+</text>
+
+
+<!-- M -->
+
+<circle cx="285" cy="450" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="285" y="457"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+M
+</text>
+
+
+<!-- N -->
+
+<circle cx="380" cy="565" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="380" y="572"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+N
+</text>
+
+
+<!-- O -->
+
+<circle cx="180" cy="350" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="180" y="357"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+O
+</text>
+
+
+<!-- P -->
+
+<circle cx="380" cy="135" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="380" y="142"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+P
+</text>
+
+
+<!-- Q -->
+
+<circle cx="580" cy="350" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="580" y="357"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+Q
+</text>
+
+
+<!-- R -->
+
+<circle cx="515" cy="350" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="515" y="357"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+R
+</text>
+
+
+<!-- S -->
+
+<circle cx="245" cy="350" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="245" y="357"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+S
+</text>
+
+
+<!-- T -->
+
+<circle cx="380" cy="250" r="22"
+fill="#fffdf9"
+stroke="#d5c8c0"
+stroke-width="2"/>
+
+<text x="380" y="257"
+font-size="19"
+text-anchor="middle"
+class="matrix-letter">
+T
+</text>
+
+
+<!-- ==========================
+     R1 AMOR
+========================== -->
+
+<circle
+cx="430"
+cy="425"
+r="26"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="2"
+/>
+
+<text
+x="430"
+y="433"
+font-size="17"
+text-anchor="middle"
+font-weight="bold"
+>
+R1
+</text>
+
+<text
+x="430"
+y="393"
+font-size="14"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="430"
+y="470"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+AMOR
+</text>
+
+
+<!-- ==========================
+     R2 DINERO
+========================== -->
+
+<circle
+cx="475"
+cy="390"
+r="26"
+fill="#f4e4e5"
+stroke="#b96d77"
+stroke-width="2"
+/>
+
+<text
+x="475"
+y="398"
+font-size="17"
+text-anchor="middle"
+font-weight="bold"
+>
+R2
+</text>
+
+<text
+x="475"
+y="358"
+font-size="14"
+text-anchor="middle"
+>
+🔒
+</text>
+
+<text
+x="475"
+y="435"
+font-size="12"
+text-anchor="middle"
+class="matrix-label"
+>
+DINERO
+</text>
+
+
+<!-- SÍMBOLOS -->
+
+<text
+x="430"
+y="490"
+font-size="27"
+text-anchor="middle"
+fill="#b96d77"
+>
+♥
+</text>
+
+<text
+x="480"
+y="455"
+font-size="27"
+text-anchor="middle"
+fill="#c79a35"
+>
+$
+</text>
+
+</svg>
+
+</div>
+
+
+<p class="matrix-note">
+🔒 A, B, C, D, R1 y R2 se desarrollan en las lecturas de pago.
+El punto E —tu Esencia— se muestra gratuitamente.
+</p>
+
+</section>
+
+
+
+<!-- ================================
+     ESENCIA GRATUITA
+================================ -->
+
+<section class="card essence-card">
+
+<div class="essence-header">
+
+<div class="essence-circle">
+E
+</div>
+
+<div>
+
+<h2 class="essence-title">
+TU NÚMERO DE ESENCIA
+</h2>
+
+<div
+id="essenceNumber"
+class="essence-number">
+—
+</div>
+
+</div>
+
+</div>
+
+
+<div class="essence-box">
+
+<strong id="essenceTitle">
+SIGNIFICADO DE TU ESENCIA
+</strong>
+
+<p id="essenceText">
+Introduce tu fecha de nacimiento para conocer el significado de tu Número de Esencia.
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- ================================
+     LEYENDA
+================================ -->
+
+<div class="legend">
+
+<div class="legend-item">
+<span class="legend-circle"></span>
+Punto de la matriz
+</div>
+
+<div class="legend-item">
+🔒 Contenido bloqueado
+</div>
+
+<div class="legend-item">
+♥ Amor
+</div>
+
+<div class="legend-item">
+$ Dinero
+</div>
+
+<div class="legend-item">
+E = Esencia gratuita
+</div>
+
+</div>
+
+
+
+<!-- ================================
+     OFERTAS
+================================ -->
+
+<section class="offers">
+
+
+<div class="offer">
+
+<h3>
+🔒 LECTURA PUNTOS CLAVE
+</h3>
+
+<div class="price">
+17,99 €
+</div>
+
+<ul>
+
+<li><b>A</b> Personalidad</li>
+
+<li><b>B</b> Espiritualidad</li>
+
+<li><b>C</b> Talento Material</li>
+
+<li><b>D</b> Cola Kármica</li>
+
+<li><b>R1</b> Canal del Amor</li>
+
+<li><b>R2</b> Canal del Dinero</li>
+
+</ul>
+
+
+<a
+class="buy"
+href="https://buy.stripe.com/00wcN5dT35R47jAenKa3u00"
+target="_blank"
+rel="noopener noreferrer"
+>
+OBTENER PUNTOS CLAVE — 17,99 €
+</a>
+
+</div>
+
+
+
+<div class="offer complete">
+
+<h3>
+🔒 LECTURA COMPLETA
+</h3>
+
+<div class="price">
+40,00 €
+</div>
+
+<ul>
+
+<li>Todos los puntos de la matriz <b>A a T</b></li>
+
+<li>Análisis profundo de cada número</li>
+
+<li>Interpretación integral del mapa</li>
+
+<li>Guía personalizada</li>
+
+<li>Informe PDF descargable</li>
+
+</ul>
+
+
+<a
+class="buy"
+href="https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01"
+target="_blank"
+rel="noopener noreferrer"
+>
+OBTENER LECTURA COMPLETA — 40,00 €
+</a>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+© 2026 YO VIVO EN PLENITUD · Todos los derechos reservados
+
+</footer>
+
+
+
+<script>
+
+/* ================================
+   DÍAS
+================================ */
+
+const daySelect=document.getElementById("day");
+
+for(let i=1;i<=31;i++){
+
+    const option=document.createElement("option");
+
+    option.value=i;
+    option.textContent=i;
+
+    daySelect.appendChild(option);
+
+}
+
+
+
+/* ================================
+   ESENCIAS
+================================ */
+
+const essenceTexts={
+
+1:"La Esencia 1 habla de iniciativa, independencia y capacidad para abrir caminos. Tu aprendizaje está en confiar en tu propio criterio y expresar tu potencial con decisión.",
+
+2:"La Esencia 2 se relaciona con sensibilidad, intuición, cooperación y capacidad para percibir matices. Tu aprendizaje es cuidar tus vínculos sin olvidarte de ti.",
+
+3:"La Esencia 3 se asocia con creatividad, expresión y comunicación. Tu energía crece cuando das espacio a tu voz y permites que tus talentos se expresen.",
+
+4:"La Esencia 4 representa estructura, constancia y capacidad para construir. Tu fortaleza aparece cuando creas bases firmes sin convertir la estabilidad en rigidez.",
+
+5:"La Esencia 5 habla de libertad, movimiento y aprendizaje a través de la experiencia. Tu reto es unir libertad con dirección y elegir sin dispersarte.",
+
+6:"La Esencia 6 se relaciona con amor, armonía y cuidado. Tu aprendizaje es comprender que cuidar a otros no significa cargar con todo y que también mereces recibir.",
+
+7:"La Esencia 7 representa introspección, búsqueda de sentido y sabiduría interior. Necesitas espacios de silencio para comprenderte, sin aislarte de la vida.",
+
+8:"La Esencia 8 habla de poder personal, organización y capacidad de materializar. Tu equilibrio está en utilizar tu fuerza con conciencia.",
+
+9:"La Esencia 9 se relaciona con sabiduría, sensibilidad y visión amplia. Tu aprendizaje es cerrar ciclos y transformar la experiencia en comprensión.",
+
+10:"La Esencia 10 simboliza ciclos, cambios y capacidad de adaptación. Tu fortaleza está en aprovechar los giros de la vida con confianza.",
+
+11:"La Esencia 11 se asocia con inspiración, intuición y fuerza interior. Posees una sensibilidad elevada y una capacidad especial para inspirar y elevar a otros desde tu propia experiencia.",
+
+12:"La Esencia 12 representa empatía y capacidad para mirar una situación desde otra perspectiva. Tu aprendizaje es ayudar sin colocarte siempre en segundo lugar.",
+
+13:"La Esencia 13 habla de transformación, cierre de etapas y renacimiento. Tienes capacidad para reconstruirte y comenzar de nuevo desde bases más auténticas.",
+
+14:"La Esencia 14 representa equilibrio, adaptación e integración. Tu energía funciona mejor cuando encuentras un ritmo sostenible.",
+
+15:"La Esencia 15 se relaciona con magnetismo, intensidad y poder de elección. Tu aprendizaje es reconocer tus apegos y elegir desde la libertad.",
+
+16:"La Esencia 16 habla de liberación, cambios profundos y reconstrucción. Tu fortaleza aparece cuando utilizas las transformaciones para crear algo más auténtico.",
+
+17:"La Esencia 17 representa inspiración, esperanza y autenticidad. Tu energía crece cuando confías en tus talentos y permites que tu propia luz sea visible.",
+
+18:"La Esencia 18 se relaciona con intuición, imaginación y sensibilidad. Tu aprendizaje es diferenciar intuición de miedo y buscar claridad.",
+
+19:"La Esencia 19 representa vitalidad, alegría y capacidad de irradiar energía. Tu reto es permitirte brillar sin sentir que debes demostrar constantemente tu valor.",
+
+20:"La Esencia 20 habla de despertar y revisión del pasado. Tu aprendizaje es escuchar tu propia voz y elegir tu camino conscientemente.",
+
+21:"La Esencia 21 representa integración, expansión y cierre de procesos. Tienes capacidad para unir experiencias y ver una imagen más completa.",
+
+22:"La Esencia 22 simboliza libertad, espontaneidad y nuevos comienzos. Tu aprendizaje es conservar la libertad sin perder dirección."
+
+};
+
+
+
+/* ================================
+   REDUCCIÓN
+================================ */
+
+function reduceTo22(number){
+
+    let n=Math.abs(Number(number));
+
+    while(n>22){
+
+        n=String(n)
+        .split("")
+        .reduce(
+            (total,digit)=>total+Number(digit),
+            0
+        );
+
+    }
+
+    return n || 1;
+
+}
+
+
+function sumDigits(number){
+
+    return String(number)
+        .split("")
+        .reduce(
+            (total,digit)=>total+Number(digit),
+            0
+        );
+
+}
+
+
+
+/* ================================
+   CALCULAR
+================================ */
+
+document
+.getElementById("calcForm")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+
+    const day=Number(
+        document.getElementById("day").value
+    );
+
+    const month=Number(
+        document.getElementById("month").value
+    );
+
+    const year=Number(
+        document.getElementById("year").value
+    );
+
+
+    if(!day || !month || !year){
+
+        return;
+
+    }
+
+
+    /*
+       Fórmula actual:
+
+       A = día
+       B = mes
+       C = suma de dígitos del año
+       D = A+B+C
+       E = A+B+C+D
+    */
+
+    const A=reduceTo22(day);
+
+    const B=reduceTo22(month);
+
+    const C=reduceTo22(
+        sumDigits(year)
+    );
+
+    const D=reduceTo22(
+        A+B+C
+    );
+
+    const E=reduceTo22(
+        A+B+C+D
+    );
+
+
+    /*
+       MOSTRAR ESENCIA
+    */
+
+    document
+    .getElementById("essenceNumber")
+    .textContent=E;
+
+
+    document
+    .getElementById("svgEssence")
+    .textContent=E;
+
+
+    document
+    .getElementById("essenceTitle")
+    .textContent=
+    "SIGNIFICADO DE TU ESENCIA "+E;
+
+
+    document
+    .getElementById("essenceText")
+    .textContent=
+    essenceTexts[E] ||
+    "Tu Número de Esencia representa la energía central desde la que expresas tus talentos y tu potencial.";
+
+
+    /*
+       LLEVAR A LA ESENCIA
+    */
+
+    document
+    .querySelector(".essence-card")
+    .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+});
+
+</script>
+
 </body>
 </html>
