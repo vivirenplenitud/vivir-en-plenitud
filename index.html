@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivir en Plenitud - Calculadora Energética</title>
+    <title>Yo Vivo en Plenitud - Mapa Energético</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -11,26 +11,25 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         plenitud: {
-                            bgDark: '#0a0512',
-                            cardDark: '#130a21',
-                            cardBorder: '#2a1647',
-                            gold: '#d8a84e',
-                            goldLight: '#f5d68b',
-                            goldDark: '#a3792c',
-                            purple: '#9d4edd',
-                            purpleLight: '#c77dff',
-                            pink: '#ef7197',
-                            pinkDark: '#ca486e',
-                            cyan: '#38bdf8',
+                            bgLight: '#fdfbf7',
+                            cardLight: '#ffffff',
+                            border: '#e8dfd8',
+                            rosaviejo: '#c47b7b',
+                            rosaviejoDark: '#9e5858',
+                            rosaviejoSoft: '#f7eded',
+                            gold: '#b8860b',
+                            goldLight: '#d4af37',
+                            goldSoft: '#fdf9ed',
+                            textDark: '#2c2220',
+                            textMuted: '#6e6360',
                         }
                     },
                     fontFamily: {
@@ -43,459 +42,350 @@
     </script>
     <style>
         body {
-            background-color: #0a0512;
-            color: #f1f5f9;
+            background-color: #fdfbf7;
+            color: #2c2220;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(157, 78, 221, 0.25) 0%, transparent 45%),
-                radial-gradient(circle at 85% 25%, rgba(239, 113, 151, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 50% 80%, rgba(216, 168, 78, 0.18) 0%, transparent 55%);
-            background-attachment: fixed;
         }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #f5d68b 0%, #d8a84e 50%, #b8860b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gold-btn-gradient {
-            background: linear-gradient(135deg, #d8a84e 0%, #b8860b 100%);
-            color: #0a0512;
-        }
-        .gold-btn-gradient:hover {
-            background: linear-gradient(135deg, #e5bd68 0%, #c99718 100%);
-        }
-
-        .purple-btn-gradient {
-            background: linear-gradient(135deg, #9d4edd 0%, #7b2cbf 100%);
+        .gold-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
             color: #ffffff;
         }
-        .purple-btn-gradient:hover {
-            background: linear-gradient(135deg, #ae5bee 0%, #8d3acb 100%);
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #e0bc46 0%, #a37505 100%);
         }
 
-        .pink-btn-gradient {
-            background: linear-gradient(135deg, #ef7197 0%, #ca486e 100%);
+        .rosa-btn {
+            background: linear-gradient(135deg, #c47b7b 0%, #9e5858 100%);
             color: #ffffff;
         }
-        .pink-btn-gradient:hover {
-            background: linear-gradient(135deg, #f285a7 0%, #d8577f 100%);
-        }
-
-        .card-cosmic-shadow {
-            box-shadow: 0 10px 30px -5px rgba(157, 78, 221, 0.2), 0 0 15px rgba(216, 168, 78, 0.08);
+        .rosa-btn:hover {
+            background: linear-gradient(135deg, #d18888 0%, #8c4b4b 100%);
         }
 
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0a0512;
+            background: #fdfbf7;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2a1647;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #d8a84e;
+            background: #c47b7b;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-plenitud-gold selection:text-black">
+<body class="min-h-screen flex flex-col justify-between selection:bg-plenitud-rosaviejoSoft selection:text-plenitud-rosaviejoDark">
 
     <!-- Header -->
-    <header class="w-full border-b border-plenitud-cardBorder bg-plenitud-bgDark/90 backdrop-blur-md sticky top-0 z-40 shadow-lg">
-        <div class="max-w-6xl mx-auto px-4 py-3.5 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="scrollToTop()">
-                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-plenitud-purple to-plenitud-gold p-0.5 shadow-lg relative flex-shrink-0">
-                    <div class="w-full h-full rounded-full bg-plenitud-bgDark flex items-center justify-center">
-                        <i class="fa-solid fa-butterfly text-xl gold-gradient-text"></i>
-                    </div>
+    <header class="w-full border-b border-plenitud-border bg-white sticky top-0 z-40 shadow-sm">
+        <div class="max-w-4xl mx-auto px-3 py-2.5 flex items-center justify-between">
+            <div class="flex items-center space-x-2.5 cursor-pointer" onclick="scrollToTop()">
+                <div class="w-8 h-8 rounded-full bg-plenitud-rosaviejoSoft border border-plenitud-rosaviejo/40 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-butterfly text-sm text-plenitud-rosaviejo"></i>
                 </div>
                 <div>
-                    <h1 class="font-cinzel text-xl sm:text-2xl font-black tracking-wider text-white">
-                        VIVIR EN <span class="gold-gradient-text">PLENITUD</span>
+                    <h1 class="font-cinzel text-base sm:text-lg font-bold tracking-wide text-plenitud-textDark">
+                        YO VIVO EN <span class="text-plenitud-rosaviejo">PLENITUD</span>
                     </h1>
-                    <p class="text-[10px] uppercase tracking-widest text-plenitud-purpleLight font-bold">
-                        Bienestar y Espiritualidad
-                    </p>
                 </div>
             </div>
             
-            <div class="flex items-center gap-3">
-                <span class="text-xs font-semibold text-amber-200/90 bg-plenitud-cardDark px-3.5 py-1.5 rounded-full border border-plenitud-gold/30 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-plenitud-gold animate-pulse"></span>
-                    Matriz Personalizada
-                </span>
-            </div>
+            <span class="text-[11px] font-semibold text-plenitud-gold bg-plenitud-goldSoft px-2.5 py-1 rounded-full border border-plenitud-goldLight/30">
+                Mapa Energético
+            </span>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow w-full">
+    <main class="max-w-3xl mx-auto px-3 py-4 flex-grow w-full">
         
-        <!-- Hero & Birth Form Section -->
-        <section class="mb-10 text-center max-w-2xl mx-auto">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-plenitud-cardDark border border-plenitud-gold/40 text-plenitud-goldLight text-xs font-bold mb-4">
-                <i class="fa-solid fa-sparkles text-plenitud-gold"></i> Descubre tus Puntos de Energía Vital
-            </div>
-            <h2 class="font-cinzel text-2xl sm:text-4xl font-extrabold text-white mb-3">
-                Calcula tu Mapa Energético Personal
+        <!-- Form Section -->
+        <section class="mb-6 text-center">
+            <h2 class="font-cinzel text-xl sm:text-3xl font-bold text-plenitud-textDark mb-1.5">
+                MAPA ENERGÉTICO
             </h2>
-            <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
-                Ingresa tu fecha de nacimiento para desvelar el diseño de tu alma. Calculamos tus puntos clave: Esencia, Espiritualidad, Talento Material, Cola Kármica y tus Canales de Amor y Dinero.
+            <p class="text-plenitud-textMuted text-xs sm:text-sm mb-4 max-w-lg mx-auto leading-relaxed">
+                Ingresa tu fecha de nacimiento para desvelar la estructura de tu alma y analizar tu canal de Esencia personal.
             </p>
 
-            <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 sm:p-8 rounded-3xl card-cosmic-shadow relative overflow-hidden">
-                <div class="absolute -right-10 -top-10 w-32 h-32 bg-plenitud-purple/20 rounded-full blur-2xl pointer-events-none"></div>
-                <div class="absolute -left-10 -bottom-10 w-32 h-32 bg-plenitud-gold/15 rounded-full blur-2xl pointer-events-none"></div>
-
-                <form id="calcForm" class="space-y-5 relative z-10" onsubmit="calculateMatrix(event)">
+            <div class="bg-white border border-plenitud-border p-4 sm:p-5 rounded-2xl shadow-sm max-w-md mx-auto">
+                <form id="calcForm" class="space-y-3.5" onsubmit="calculateMatrix(event)">
                     <div>
-                        <label class="block text-left text-xs font-bold uppercase tracking-wider text-slate-300 mb-2">
-                            Fecha de Nacimiento <span class="text-plenitud-gold">*</span>
+                        <label class="block text-left text-[11px] font-bold uppercase tracking-wider text-plenitud-textMuted mb-1.5">
+                            Fecha de Nacimiento
                         </label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <div>
-                                <select id="birthDay" required class="w-full bg-plenitud-bgDark border border-plenitud-cardBorder rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-plenitud-gold transition-colors">
-                                    <option value="" disabled selected>Día</option>
-                                </select>
-                            </div>
-                            <div>
-                                <select id="birthMonth" required class="w-full bg-plenitud-bgDark border border-plenitud-cardBorder rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-plenitud-gold transition-colors">
-                                    <option value="" disabled selected>Mes</option>
-                                    <option value="1">Enero (1)</option>
-                                    <option value="2">Febrero (2)</option>
-                                    <option value="3">Marzo (3)</option>
-                                    <option value="4">Abril (4)</option>
-                                    <option value="5">Mayo (5)</option>
-                                    <option value="6">Junio (6)</option>
-                                    <option value="7">Julio (7)</option>
-                                    <option value="8">Agosto (8)</option>
-                                    <option value="9">Septiembre (9)</option>
-                                    <option value="10">Octubre (10)</option>
-                                    <option value="11">Noviembre (11)</option>
-                                    <option value="12">Diciembre (12)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <input type="number" id="birthYear" placeholder="Año (ej. 1990)" min="1920" max="2026" required
-                                       class="w-full bg-plenitud-bgDark border border-plenitud-cardBorder rounded-xl px-3 py-3 text-white text-sm focus:outline-none focus:border-plenitud-gold transition-colors">
-                            </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <select id="birthDay" required class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
+                                <option value="" disabled selected>Día</option>
+                            </select>
+                            <select id="birthMonth" required class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
+                                <option value="" disabled selected>Mes</option>
+                                <option value="1">Enero (1)</option>
+                                <option value="2">Febrero (2)</option>
+                                <option value="3">Marzo (3)</option>
+                                <option value="4">Abril (4)</option>
+                                <option value="5">Mayo (5)</option>
+                                <option value="6">Junio (6)</option>
+                                <option value="7">Julio (7)</option>
+                                <option value="8">Agosto (8)</option>
+                                <option value="9">Septiembre (9)</option>
+                                <option value="10">Octubre (10)</option>
+                                <option value="11">Noviembre (11)</option>
+                                <option value="12">Diciembre (12)</option>
+                            </select>
+                            <input type="number" id="birthYear" placeholder="Año" min="1920" max="2026" required
+                                   class="w-full bg-plenitud-bgLight border border-plenitud-border rounded-lg px-2 py-2 text-plenitud-textDark text-xs focus:outline-none focus:border-plenitud-rosaviejo">
                         </div>
                     </div>
 
                     <button type="submit" 
-                            class="w-full gold-btn-gradient font-extrabold py-4 px-6 rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 text-sm uppercase tracking-wider">
-                        <i class="fa-solid fa-compass text-base"></i> Generar Mi Esquema Energético
+                            class="w-full rosa-btn font-bold py-2.5 px-4 rounded-lg shadow-sm hover:opacity-95 transition-all text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-sparkles text-xs"></i> Calcular Mapa Energético
                     </button>
                 </form>
             </div>
         </section>
 
         <!-- Results Section -->
-        <div id="resultsSection" class="hidden space-y-10">
+        <div id="resultsSection" class="hidden space-y-6">
             
             <!-- Octagram SVG View -->
-            <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 sm:p-8 rounded-3xl flex flex-col items-center justify-center relative card-cosmic-shadow max-w-3xl mx-auto">
-                <h3 class="font-cinzel text-xl sm:text-2xl text-white mb-1 text-center font-bold">
-                    <i class="fa-solid fa-sun mr-2 text-plenitud-gold"></i>Tu Esquema Energético Personal
+            <div class="bg-white border border-plenitud-border p-4 rounded-2xl flex flex-col items-center justify-center relative shadow-sm max-w-md mx-auto">
+                <h3 class="font-cinzel text-base sm:text-lg text-plenitud-textDark font-bold mb-1 text-center">
+                    Tu Diagrama Energético
                 </h3>
-                <p class="text-xs text-slate-400 text-center mb-6">Visualización de tus nodos personales y canales activados</p>
                 
-                <div class="w-full max-w-lg aspect-square relative flex items-center justify-center my-2">
-                    <svg viewBox="0 0 450 450" class="w-full h-full drop-shadow-lg">
-                        <circle cx="225" cy="225" r="180" fill="none" stroke="#d8a84e" stroke-width="1.5" stroke-dasharray="5,5" opacity="0.4"/>
-                        <rect x="105" y="105" width="240" height="240" fill="none" stroke="#ef7197" stroke-width="2" transform="rotate(45 225 225)" opacity="0.6"/>
-                        <rect x="105" y="105" width="240" height="240" fill="none" stroke="#9d4edd" stroke-width="2" opacity="0.6"/>
+                <div class="w-full max-w-[280px] sm:max-w-[320px] aspect-square relative flex items-center justify-center my-1">
+                    <svg viewBox="0 0 450 450" class="w-full h-full">
+                        <circle cx="225" cy="225" r="170" fill="none" stroke="#e8dfd8" stroke-width="1.5" stroke-dasharray="4,4"/>
+                        <rect x="110" y="110" width="230" height="230" fill="none" stroke="#c47b7b" stroke-width="1.5" transform="rotate(45 225 225)"/>
+                        <rect x="110" y="110" width="230" height="230" fill="none" stroke="#b8860b" stroke-width="1.5"/>
                         
-                        <line x1="105" y1="225" x2="345" y2="225" stroke="#ef7197" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
-                        <line x1="225" y1="105" x2="225" y2="345" stroke="#ef7197" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
-                        <line x1="140" y1="140" x2="310" y2="310" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
-                        <line x1="310" y1="140" x2="140" y2="310" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5"/>
+                        <line x1="110" y1="225" x2="340" y2="225" stroke="#c47b7b" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="225" y1="110" x2="225" y2="340" stroke="#c47b7b" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="145" y1="145" x2="305" y2="305" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="305" y1="145" x2="145" y2="305" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,3"/>
 
-                        <!-- NODE A -->
-                        <text x="85" y="170" text-anchor="middle" fill="#c77dff" font-size="13" font-weight="800" font-family="'Cinzel', serif">ESENCIA (A)</text>
-                        <circle cx="85" cy="225" r="22" fill="#0a0512" stroke="#9d4edd" stroke-width="2.5"/>
-                        <text id="nodeA" x="85" y="225" text-anchor="middle" dominant-baseline="central" fill="#c77dff" font-size="14" font-weight="bold">🔒</text>
+                        <!-- NODE A: PERSONALIDAD -->
+                        <text x="75" y="175" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">PERSONALIDAD (A)</text>
+                        <circle cx="75" cy="225" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
+                        <text id="nodeA" x="75" y="225" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
 
-                        <!-- NODE B -->
-                        <text x="225" y="32" text-anchor="middle" fill="#c77dff" font-size="13" font-weight="800" font-family="'Cinzel', serif">ESPIRITUALIDAD (B)</text>
-                        <circle cx="225" cy="85" r="22" fill="#0a0512" stroke="#9d4edd" stroke-width="2.5"/>
-                        <text id="nodeB" x="225" y="85" text-anchor="middle" dominant-baseline="central" fill="#c77dff" font-size="14" font-weight="bold">🔒</text>
+                        <!-- NODE B: ESPIRITUALIDAD -->
+                        <text x="225" y="35" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">ESPIRITUALIDAD (B)</text>
+                        <circle cx="225" cy="75" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
+                        <text id="nodeB" x="225" y="75" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
 
-                        <!-- NODE C -->
-                        <text x="365" y="170" text-anchor="middle" fill="#c77dff" font-size="13" font-weight="800" font-family="'Cinzel', serif">TALENTO (C)</text>
-                        <circle cx="365" cy="225" r="22" fill="#0a0512" stroke="#9d4edd" stroke-width="2.5"/>
-                        <text id="nodeC" x="365" y="225" text-anchor="middle" dominant-baseline="central" fill="#c77dff" font-size="14" font-weight="bold">🔒</text>
+                        <!-- NODE C: TALENTO MATERIAL -->
+                        <text x="375" y="175" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">TALENTO (C)</text>
+                        <circle cx="375" cy="225" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
+                        <text id="nodeC" x="375" y="225" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
 
-                        <!-- NODE D -->
-                        <circle cx="225" cy="365" r="22" fill="#0a0512" stroke="#ef7197" stroke-width="2.5"/>
-                        <text id="nodeD" x="225" y="365" text-anchor="middle" dominant-baseline="central" fill="#ef7197" font-size="14" font-weight="bold">🔒</text>
-                        <text x="225" y="408" text-anchor="middle" fill="#ef7197" font-size="13" font-weight="800" font-family="'Cinzel', serif">COLA KÁRMICA (D)</text>
+                        <!-- NODE D: COLA KÁRMICA -->
+                        <circle cx="225" cy="375" r="20" fill="#ffffff" stroke="#c47b7b" stroke-width="2"/>
+                        <text id="nodeD" x="225" y="375" text-anchor="middle" dominant-baseline="central" fill="#9e5858" font-size="12" font-weight="bold">🔒</text>
+                        <text x="225" y="415" text-anchor="middle" fill="#9e5858" font-size="11" font-weight="700" font-family="'Cinzel', serif">COLA KÁRMICA (D)</text>
 
-                        <!-- NODE E (CENTRO) -->
-                        <text x="225" y="165" text-anchor="middle" fill="#f5d68b" font-size="13" font-weight="800" font-family="'Cinzel', serif">ESENCIA (E)</text>
-                        <circle cx="225" cy="225" r="26" fill="#1b122c" stroke="#d8a84e" stroke-width="3.5"/>
-                        <text id="nodeE" x="225" y="225" text-anchor="middle" dominant-baseline="central" fill="#f5d68b" font-size="18" font-weight="bold">?</text>
+                        <!-- NODE E: ESENCIA CENTRAL (GRATUITO) -->
+                        <text x="225" y="170" text-anchor="middle" fill="#b8860b" font-size="11" font-weight="700" font-family="'Cinzel', serif">ESENCIA (E)</text>
+                        <circle cx="225" cy="225" r="24" fill="#fdf9ed" stroke="#b8860b" stroke-width="3"/>
+                        <text id="nodeE" x="225" y="225" text-anchor="middle" dominant-baseline="central" fill="#b8860b" font-size="16" font-weight="bold">?</text>
 
                         <!-- R1 AMOR -->
-                        <circle cx="255" cy="275" r="16" fill="#0a0512" stroke="#ef7197" stroke-width="2"/>
-                        <text id="nodeR1" x="255" y="275" text-anchor="middle" dominant-baseline="central" fill="#ef7197" font-size="10" font-weight="bold">🔒</text>
-                        <text x="245" y="308" text-anchor="end" fill="#ef7197" font-size="11" font-weight="bold">R1 AMOR</text>
+                        <circle cx="250" cy="270" r="14" fill="#ffffff" stroke="#c47b7b" stroke-width="1.5"/>
+                        <text id="nodeR1" x="250" y="270" text-anchor="middle" dominant-baseline="central" fill="#c47b7b" font-size="9" font-weight="bold">🔒</text>
+                        <text x="240" y="300" text-anchor="end" fill="#c47b7b" font-size="10" font-weight="bold">AMOR</text>
 
                         <!-- R2 DINERO -->
-                        <circle cx="275" cy="255" r="16" fill="#0a0512" stroke="#38bdf8" stroke-width="2"/>
-                        <text id="nodeR2" x="275" y="255" text-anchor="middle" dominant-baseline="central" fill="#38bdf8" font-size="10" font-weight="bold">🔒</text>
-                        <text x="305" y="260" text-anchor="start" fill="#38bdf8" font-size="11" font-weight="bold">R2 DINERO</text>
+                        <circle cx="270" cy="250" r="14" fill="#ffffff" stroke="#b8860b" stroke-width="1.5"/>
+                        <text id="nodeR2" x="270" y="250" text-anchor="middle" dominant-baseline="central" fill="#b8860b" font-size="9" font-weight="bold">🔒</text>
+                        <text x="295" y="255" text-anchor="start" fill="#b8860b" font-size="10" font-weight="bold">DINERO</text>
                     </svg>
                 </div>
             </div>
 
-            <!-- FREE REVEALED POINT E CARD -->
-            <div class="bg-gradient-to-b from-plenitud-cardDark to-plenitud-bgDark border-2 border-plenitud-gold/50 p-6 sm:p-8 rounded-3xl card-cosmic-shadow relative overflow-hidden">
-                <div class="flex items-center justify-between border-b border-plenitud-cardBorder pb-4 mb-6">
-                    <div class="flex items-center gap-3">
-                        <span class="w-10 h-10 rounded-full bg-plenitud-gold/20 text-plenitud-gold border border-plenitud-gold/50 flex items-center justify-center font-bold font-cinzel text-xl">
-                            E
+            <!-- FREE REVEALED POINT E CARD (COMPLETO SIN RESTRICCIÓN) -->
+            <div class="bg-white border-2 border-plenitud-gold/40 p-4 sm:p-5 rounded-2xl shadow-sm">
+                <div class="flex items-center gap-3 border-b border-plenitud-border pb-3 mb-3">
+                    <span class="w-8 h-8 rounded-full bg-plenitud-goldSoft text-plenitud-gold border border-plenitud-gold/30 flex items-center justify-center font-bold font-cinzel text-base">
+                        E
+                    </span>
+                    <div>
+                        <span class="text-[10px] uppercase tracking-wider text-emerald-600 font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check"></i> Análisis Gratuito Completo
                         </span>
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold flex items-center gap-1">
-                                <i class="fa-solid fa-lock-open"></i> Análisis Gratuito Revelado
-                            </span>
-                            <h4 class="font-cinzel text-xl sm:text-2xl font-bold text-white">
-                                Esencia Central (Número <span id="freeNumE" class="text-plenitud-gold">--</span>)
-                            </h4>
-                        </div>
+                        <h4 class="font-cinzel text-base sm:text-lg font-bold text-plenitud-textDark">
+                            Número de Esencia: <span id="freeNumE" class="text-plenitud-gold">--</span>
+                        </h4>
                     </div>
                 </div>
 
-                <div class="space-y-4 text-slate-200">
-                    <div class="bg-plenitud-bgDark/80 p-5 rounded-2xl border border-plenitud-gold/30">
-                        <h5 class="text-plenitud-goldLight font-bold text-base mb-2 flex items-center gap-2">
-                            <i class="fa-solid fa-gem text-plenitud-gold"></i> Núcleo Energético de tu Alma
+                <div class="space-y-3">
+                    <div class="bg-plenitud-goldSoft/60 p-3.5 rounded-xl border border-plenitud-gold/20">
+                        <h5 class="text-plenitud-gold font-bold text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                            <i class="fa-solid fa-gem text-xs"></i> Interpretación de tu Centro Energético
                         </h5>
-                        <p id="freeDescE" class="text-sm leading-relaxed text-slate-300">
-                            Cargando interpretación...
+                        <p id="freeDescE" class="text-xs leading-relaxed text-plenitud-textDark">
+                            Cargando tu lectura completa...
                         </p>
                     </div>
 
-                    <div class="bg-plenitud-bgDark/40 p-5 rounded-2xl border border-plenitud-cardBorder relative">
-                        <h5 class="text-white font-bold text-sm mb-2">
-                            Aspectos Profundos de tu Zona de Confort Energética
+                    <div class="bg-plenitud-bgLight p-3.5 rounded-xl border border-plenitud-border">
+                        <h5 class="text-plenitud-textDark font-bold text-xs mb-1">
+                            Integración Práctica de tu Esencia
                         </h5>
-                        <p class="text-xs text-slate-300 leading-relaxed">
-                            Este punto central influye de manera determinante en cómo recargas tus niveles de energía vital y cómo procesas las lecciones más importantes de tu vida.
+                        <p id="freeAdviceE" class="text-xs text-plenitud-textMuted leading-relaxed">
+                            Cargando recomendación práctica...
                         </p>
-                        
-                        <div class="mt-3 relative">
-                            <p class="text-xs text-slate-400 select-none blur-[4px] opacity-60 leading-relaxed">
-                                Tu energía del centro revela patrones inconscientes que activan tu poder de atracción personal. Cuando te sintonizas con esta frecuencia, las oportunidades profesionales y relaciones significativas fluyen sin resistencia. En tu informe completo se detalla la clave secreta para desbloquear los patrones asociados a esta posición.
-                            </p>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <button onclick="openCheckoutModal('17.99')" class="bg-plenitud-cardDark/95 hover:bg-plenitud-cardDark text-plenitud-goldLight text-xs px-4 py-2 rounded-full border border-plenitud-gold/40 shadow-lg font-bold flex items-center gap-2 transition-transform hover:scale-105">
-                                    <i class="fa-solid fa-lock text-plenitud-gold"></i> Más detalles en la lectura completa
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- LOCKED POINTS SECTION -->
+            <!-- LOCKED POINTS GRID -->
             <div>
-                <div class="text-center mb-6">
-                    <h4 class="font-cinzel text-2xl font-bold text-white mb-2">
-                        Puntos de Tu Matriz Pendientes por Desbloquear
+                <div class="text-center mb-4">
+                    <h4 class="font-cinzel text-lg font-bold text-plenitud-textDark">
+                        Puntos de Tu Mapa Pendientes por Desbloquear
                     </h4>
-                    <p class="text-sm text-slate-300 max-w-xl mx-auto">
-                        Los siguientes nodos contienen la información decisiva sobre tu propósito material, tu karma y tus canales de abundancia.
+                    <p class="text-xs text-plenitud-textMuted max-w-md mx-auto">
+                        Los siguientes nodos contienen la información sobre tu personalidad externa, karma, talento y canales de abundancia.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     
                     <!-- Node A Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-plenitud-purple/20 text-plenitud-purpleLight border border-plenitud-purple/40 flex items-center justify-center font-bold font-cinzel">A</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Esencia</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">A</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Personalidad (Nodo A)</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Tu proyección externa y primer impacto</p>
                             </div>
-                            <i class="fa-solid fa-lock text-slate-500"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Tus cualidades innatas, la primera impresión que causas en el mundo y tu misión principal durante la juventud.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full purple-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-key"></i> Desbloquear Lectura
-                        </button>
+                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
                     </div>
 
                     <!-- Node B Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-plenitud-purple/20 text-plenitud-purpleLight border border-plenitud-purple/40 flex items-center justify-center font-bold font-cinzel">B</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Espiritualidad</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">B</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Espiritualidad (Nodo B)</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Conexión intuitiva y tareas del alma</p>
                             </div>
-                            <i class="fa-solid fa-lock text-slate-500"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Tu conexión con lo divino, la intuición superior y las tareas espirituales que vienes a aprender.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full purple-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-key"></i> Desbloquear Lectura
-                        </button>
+                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
                     </div>
 
                     <!-- Node C Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-plenitud-purple/20 text-plenitud-purpleLight border border-plenitud-purple/40 flex items-center justify-center font-bold font-cinzel">C</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Talento Material</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">C</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Talento Material (Nodo C)</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Habilidades prácticas y manifestación</p>
                             </div>
-                            <i class="fa-solid fa-lock text-slate-500"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Tus habilidades prácticas para generar riqueza, salud física y manifestar proyectos tangibles.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full purple-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-key"></i> Desbloquear Lectura
-                        </button>
+                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
                     </div>
 
                     <!-- Node D Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-pink/30 p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-plenitud-pink/20 text-plenitud-pink border border-plenitud-pink/40 flex items-center justify-center font-bold font-cinzel">D</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Cola Kármica</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold font-cinzel text-xs flex items-center justify-center border border-plenitud-rosaviejo/20">D</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Cola Kármica (Nodo D)</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Lecciones pendietes a resolver</p>
                             </div>
-                            <i class="fa-solid fa-lock text-slate-500"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Los desafíos pendientes y lecciones no resueltas de vidas pasadas que debes sanar para avanzar.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full pink-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-key"></i> Desbloquear Lectura
-                        </button>
+                        <i class="fa-solid fa-lock text-plenitud-rosaviejo text-xs"></i>
                     </div>
 
                     <!-- R1 Amor Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-pink/30 p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-plenitud-pink/20 text-plenitud-pink border border-plenitud-pink/40 flex items-center justify-center font-bold text-xs">R1</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Canal del Amor</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-rosaviejoSoft text-plenitud-rosaviejo font-bold text-[10px] flex items-center justify-center border border-plenitud-rosaviejo/20">R1</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Canal del Amor</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Pareja ideal y dinámicas afectivas</p>
                             </div>
-                            <i class="fa-solid fa-heart text-plenitud-pink"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Tu pareja ideal, la dinámica de tus relaciones amorosas y qué bloquea la armonía en la pareja.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full pink-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-lock"></i> Desbloquear Amor
-                        </button>
+                        <i class="fa-solid fa-heart text-plenitud-rosaviejo text-xs"></i>
                     </div>
 
                     <!-- R2 Dinero Card -->
-                    <div class="bg-plenitud-cardDark border border-plenitud-cardBorder p-6 rounded-3xl relative overflow-hidden flex flex-col justify-between card-cosmic-shadow">
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <span class="w-9 h-9 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/40 flex items-center justify-center font-bold text-xs">R2</span>
-                                <div>
-                                    <h5 class="font-cinzel font-bold text-white text-lg">Canal del Dinero</h5>
-                                </div>
+                    <div class="bg-white border border-plenitud-border p-3.5 rounded-xl flex items-center justify-between shadow-sm">
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-full bg-plenitud-goldSoft text-plenitud-gold font-bold text-[10px] flex items-center justify-center border border-plenitud-gold/20">R2</span>
+                            <div>
+                                <h5 class="font-cinzel font-bold text-plenitud-textDark text-xs">Canal del Dinero</h5>
+                                <p class="text-[10px] text-plenitud-textMuted">Flujo financiero y vocación</p>
                             </div>
-                            <i class="fa-solid fa-sack-dollar text-sky-400"></i>
                         </div>
-                        <p class="text-xs text-slate-500 blur-[3px] select-none mb-4">
-                            Las profesiones más rentables para ti, la vía de flujo financiero y qué obstaculiza tu prosperidad.
-                        </p>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full purple-btn-gradient py-2.5 px-4 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-sm">
-                            <i class="fa-solid fa-lock"></i> Desbloquear Dinero
-                        </button>
+                        <i class="fa-solid fa-sack-dollar text-plenitud-gold text-xs"></i>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Pricing Options -->
-            <div class="bg-gradient-to-r from-plenitud-bgDark via-plenitud-cardDark to-plenitud-bgDark border border-plenitud-gold/40 p-8 rounded-3xl text-center space-y-6 shadow-2xl relative overflow-hidden text-white">
-                <div class="max-w-2xl mx-auto space-y-3">
-                    <span class="text-xs uppercase tracking-widest text-plenitud-gold font-bold">
-                        Tu Lectura Personalizada
+            <!-- PRICING OPTIONS -->
+            <div class="bg-white border border-plenitud-border p-5 rounded-2xl text-center space-y-4 shadow-sm">
+                <div>
+                    <span class="text-[10px] uppercase tracking-widest text-plenitud-rosaviejo font-bold">
+                        Opciones de Desbloqueo
                     </span>
-                    <h3 class="font-cinzel text-2xl sm:text-3xl font-bold text-white">
-                        Desbloquea la Interpretación Completa de tu Esquema
+                    <h3 class="font-cinzel text-lg sm:text-xl font-bold text-plenitud-textDark mt-0.5">
+                        Completa tu Lectura Energética
                     </h3>
-                    <p class="text-slate-300 text-sm">
-                        Elige la opción que mejor se adapte a tu camino de autoconocimiento y crecimiento personal.
-                    </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto text-left pt-2">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left pt-1">
                     
                     <!-- Basic Option -->
-                    <div class="bg-plenitud-bgDark/90 border border-plenitud-cardBorder p-6 rounded-2xl flex flex-col justify-between hover:border-plenitud-gold/50 transition-all">
+                    <div class="bg-plenitud-bgLight border border-plenitud-border p-4 rounded-xl flex flex-col justify-between">
                         <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-cinzel font-bold text-white text-lg">Informe de Puntos Clave</h4>
-                                <span class="bg-plenitud-cardDark text-plenitud-goldLight text-xs px-2.5 py-1 rounded-full border border-plenitud-cardBorder">7 Puntos</span>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-cinzel font-bold text-plenitud-textDark text-sm">Puntos Clave</h4>
+                                <span class="bg-white text-plenitud-gold font-bold text-[10px] px-2 py-0.5 rounded border border-plenitud-border">7 Nodos</span>
                             </div>
-                            <div class="text-3xl font-extrabold text-white mb-4">
+                            <div class="text-2xl font-extrabold text-plenitud-textDark mb-3">
                                 17,99 €
                             </div>
-                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Interpretación de Esencia (A)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Interpretación de Espiritualidad (B)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Interpretación de Talento Material (C)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Análisis de Cola Kármica (D)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Interpretación de Esencia Central (E)</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-gold"></i> Canal del Amor (R1) y Dinero (R2)</li>
+                            <ul class="text-xs text-plenitud-textMuted space-y-1.5 mb-4">
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Lectura de Personalidad (A)</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Lectura de Espiritualidad (B)</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Talento Material (C)</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Análisis Cola Kármica (D)</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-gold text-[10px]"></i> Canales de Amor (R1) y Dinero (R2)</li>
                             </ul>
                         </div>
-                        <button onclick="openCheckoutModal('17.99')" class="w-full gold-btn-gradient font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all">
-                            Obtener Puntos Clave (17,99 €)
+                        <button onclick="openCheckoutModal('17.99')" class="w-full gold-btn font-bold py-2.5 px-3 rounded-lg text-xs uppercase tracking-wider shadow-sm transition-all">
+                            Desbloquear (17,99 €)
                         </button>
                     </div>
 
                     <!-- Complete Option -->
-                    <div class="bg-plenitud-bgDark/90 border-2 border-plenitud-pink p-6 rounded-2xl flex flex-col justify-between relative shadow-xl">
-                        <div class="absolute -top-3 right-6 bg-plenitud-pink text-white text-[10px] uppercase font-black px-3 py-1 rounded-full tracking-wider shadow-md">
-                            Más Recomendado
-                        </div>
+                    <div class="bg-plenitud-rosaviejoSoft border border-plenitud-rosaviejo/40 p-4 rounded-xl flex flex-col justify-between relative">
                         <div>
-                            <div class="flex justify-between items-start mb-3">
-                                <h4 class="font-cinzel font-bold text-white text-lg">Informe Completo Guía de Vida</h4>
-                                <span class="bg-plenitud-pink/20 text-plenitud-pink text-xs px-2.5 py-1 rounded-full font-bold">Todo Incluido</span>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-cinzel font-bold text-plenitud-textDark text-sm">Guía de Vida Completa</h4>
+                                <span class="bg-plenitud-rosaviejo text-white text-[9px] uppercase font-bold px-2 py-0.5 rounded">Recomendado</span>
                             </div>
-                            <div class="text-3xl font-extrabold text-white mb-4">
-                                29,99 € <span class="text-xs text-slate-400 font-normal line-through">49,99 €</span>
+                            <div class="text-2xl font-extrabold text-plenitud-textDark mb-3">
+                                29,99 € <span class="text-xs text-plenitud-textMuted font-normal line-through">49,99 €</span>
                             </div>
-                            <ul class="text-xs text-slate-300 space-y-2 mb-6">
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-pink"></i> Todo lo incluido en el Plan Puntos Clave</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-pink"></i> Mapa de Misión de Vida Completo</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-pink"></i> Pronóstico de Ciclos Vitales y Años Clave</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-pink"></i> Ejercicios prácticos de desbloqueo energético</li>
-                                <li class="flex items-center gap-2"><i class="fa-solid fa-check text-plenitud-pink"></i> Descarga inmediata en PDF de alta calidad</li>
+                            <ul class="text-xs text-plenitud-textDark space-y-1.5 mb-4">
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Todo lo del plan Puntos Clave</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Mapa de Misión de Vida Completo</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Pronóstico de Ciclos Vitales</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Ejercicios de armonización</li>
+                                <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-plenitud-rosaviejo text-[10px]"></i> Informe descargable en PDF</li>
                             </ul>
                         </div>
-                        <button onclick="openCheckoutModal('29.99')" class="w-full pink-btn-gradient font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider shadow-md hover:brightness-110 transition-all">
-                            Obtener Informe Completo (29,99 €)
+                        <button onclick="openCheckoutModal('29.99')" class="w-full rosa-btn font-bold py-2.5 px-3 rounded-lg text-xs uppercase tracking-wider shadow-sm transition-all">
+                            Obtener Todo (29,99 €)
                         </button>
                     </div>
 
@@ -506,20 +396,20 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t border-plenitud-cardBorder bg-plenitud-bgDark/95 py-6 mt-12 text-center text-xs text-slate-400">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>© 2026 Vivir en Plenitud. Todos los derechos reservados.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-plenitud-gold transition-colors">Política de Privacidad</a>
-                <a href="#" class="hover:text-plenitud-gold transition-colors">Términos de Servicio</a>
-                <a href="#" class="hover:text-plenitud-gold transition-colors">Contacto</a>
+    <footer class="w-full border-t border-plenitud-border bg-white py-4 mt-8 text-center text-xs text-plenitud-textMuted">
+        <div class="max-w-4xl mx-auto px-3 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <p>© 2026 Yo Vivo en Plenitud. Todos los derechos reservados.</p>
+            <div class="flex gap-3 text-[11px]">
+                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Privacidad</a>
+                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Términos</a>
+                <a href="#" class="hover:text-plenitud-rosaviejo transition-colors">Contacto</a>
             </div>
         </div>
     </footer>
 
-    <!-- Script de Funcionalidad y Cálculo de Matriz -->
+    <!-- JavaScript Script -->
     <script>
-        // Poblar el selector de días (1 a 31)
+        // Poblar el selector de días
         const daySelect = document.getElementById('birthDay');
         for (let i = 1; i <= 31; i++) {
             let opt = document.createElement('option');
@@ -528,7 +418,7 @@
             daySelect.appendChild(opt);
         }
 
-        // Función para reducir un número a una arcana de 1 a 22 (Sistema de Matriz del Destino)
+        // Función para reducir un número a un arcana (1 a 22)
         function reduceToArcana(num) {
             num = Math.abs(num);
             while (num > 22) {
@@ -556,54 +446,77 @@
                 yearSum += parseInt(char, 10);
             }
 
-            // Puntos clave de la Matriz
+            // Puntos de la Matriz
             const A = reduceToArcana(day);
             const B = reduceToArcana(month);
             const C = reduceToArcana(yearSum);
             const D = reduceToArcana(A + B + C);
             const E = reduceToArcana(A + B + C + D);
 
-            const R1 = reduceToArcana(D + E); // Canal del Amor
-            const R2 = reduceToArcana(C + E); // Canal del Dinero
-
-            // Actualizar vista del SVG
+            // SVG Update
             document.getElementById('nodeE').textContent = E;
             document.getElementById('freeNumE').textContent = E;
 
-            // Descripciones abreviadas para el Punto E (Gratuito)
+            // Interpretación COMPLETA e ILIMITADA para el punto de Esencia (E)
             const descriptionsE = {
-                1: "Tu núcleo energético representa la Magia y la Capacidad Infinita de Creación. Posees un poder natural de manifestación verbal y mental.",
-                2: "Tu núcleo representa la Intuición y la Sabiduría Secreta. Tienes una conexión profunda con lo oculto y una habilidad natural para sanar.",
-                3: "Tu núcleo está regido por la Emperatriz: la Fertilidad, la Abundancia y el Cuidado Maternal. Atraes prosperidad material con elegancia.",
-                4: "Tu núcleo representa el Emperador: Estructura, Liderazgo, Orden y Autoridad Tangible. Tienes capacidad nata de construir imperios.",
-                5: "Tu núcleo representa el Maestro o Jerarca: Transmisión de Conocimientos, Tradición y Búsqueda de la Verdad Superior.",
-                6: "Tu núcleo representa el Amor Incondicional, las Relaciones Armónicas y la Elección Consciente desde el Corazón.",
-                7: "Tu núcleo representa el Carro de Victoria: Movimiento, Metas Claras, Ambición Sana y Superación de Obstáculos.",
-                8: "Tu núcleo representa la Justicia Karma: Comprensión Profunda de las Leyes de Causa y Efecto en tu vida cotidiana.",
-                9: "Tu núcleo representa el Ermitaño: Sabiduría Interior, Introspección, Prudencia y Conocimiento Profundo.",
-                10: "Tu núcleo representa la Rueda de la Fortuna: Flujo Continuo de Abundancia, Suerte y Sincronicidades Divinas.",
-                11: "Tu núcleo representa la Fuerza: Energía Vital Ilimitada, Potencial Físico y Pasión Orientada a Propósitos Elevados.",
-                12: "Tu núcleo representa el Ahorcado / Perspectiva Diferente: Capacidad Única de Servicio, Empatía Ampliada y Visión Invertida.",
-                13: "Tu núcleo representa la Transformación Radical: Renovación Constante, Capacidad de Soltar lo Viejo y Renacer.",
-                14: "Tu núcleo representa la Templanza: Armonía del Alma, Moderación, Arte y Paz Interior Duradera.",
-                15: "Tu núcleo representa el Diablo / Magnetismo: Fuerte Carisma Personal, Manejo de Sombras y Gran Potencial Financiero.",
-                16: "Tu núcleo representa la Torre / Despertar: Reestructuración, Poder para Reconstruir tu Vida desde Cero sobre Bases Sólidas.",
-                17: "Tu núcleo representa la Estrella: Talento Artístico, Reconocimiento Público y Brillo Único Inspirador.",
-                18: "Tu núcleo representa la Luna: Poder de Imaginación, Conexión con el Inconsciente y Manifestación del Pensamiento.",
-                19: "Tu núcleo representa el Sol: Alegría Positiva, Éxito Compartido, Liderazgo Cálido y Gran Abundancia.",
-                20: "Tu núcleo representa el Juicio / Linaje: Sanación Familiar, Renacimiento Espiritual y Llamado del Destino.",
-                21: "Tu núcleo representa el Mundo: Visión Global, Conexión Internacional, Paz Interior y Ausencia de Limites.",
-                22: "Tu núcleo representa el Loco / Libertad: Pureza de Espíritu, Inicios Audaces y Confianza Total en el Universo."
+                1: "Tu centro energético representa al Mago: la capacidad innata de crear tu realidad a través de la intención, la palabra y la acción consciente. Posees un intelecto brillante y un liderazgo natural.",
+                2: "Tu centro energético está conectado con la Sacerdotisa: la intuición profunda, la sabiduría interior y la conexión con lo divino. Tu fortaleza reside en escuchar tu voz interna antes de actuar.",
+                3: "Tu centro está regido por la Emperatriz: la energía de la abundancia, la creatividad y la belleza. Tienes un talento natural para hacer florecer proyectos y cuidar de tu entorno con elegancia.",
+                4: "Tu centro energético representa al Emperador: la estructura, la estabilidad y la maestría sobre el mundo material. Tienes la capacidad de edificar bases sólidas y asumir responsabilidades elevadas.",
+                5: "Tu centro está guiado por el Sumosacerdote: la vocación de enseñar, compartir conocimiento tradicional y actuar como puente espiritual para los demás con ética y rectitud.",
+                6: "Tu centro energético vibra con los Enamorados: la armonía en las relaciones, la belleza del corazón y la capacidad de tomar decisiones alineadas con tus valores más profundos.",
+                7: "Tu centro representa al Carro: el impulso de superación, la determinación y la capacidad de dirigir tus fuerzas hacia metas ambiciosas venciendo cualquier obstáculo.",
+                8: "Tu centro energético está marcado por la Justicia: la comprensión profunda de la causa y efecto, el equilibrio emocional y la búsqueda inquebrantable de la verdad.",
+                9: "Tu centro representa al Ermitaño: la búsqueda de la sabiduría interior, el autoanálisis y la capacidad de guiar a otros desde la serenidad y la prudencia.",
+                10: "Tu centro está regido por la Rueda de la Fortuna: la flexibilidad ante los cambios, la atracción de sincronicidades y el flujo constante con la abundancia del universo.",
+                11: "Tu centro energético representa la Fuerza: el dominio suave de los instintos, la resiliencia física y la valentía serena para afrontar los retos de la vida.",
+                12: "Tu centro energético conecta con el Colgado: una perspectiva única y compasiva de las situaciones. Tienes la habilidad de ver lo que otros pasan por alto y servir con empatía.",
+                13: "Tu centro representa la Muerte/Transformación: la capacidad de renovarte constantemente, dejar ir lo que ya no sirve y renacer con mayor fuerza en cada etapa.",
+                14: "Tu centro energético vibra con la Templanza: el equilibrio del alma, la paciencia, la sanación y la moderación en todas las áreas de tu vida.",
+                15: "Tu centro energético representa al Diablo/Magnetismo: un carisma magnético excepcional, pasión desbordante y la habilidad para dominar el mundo material e intuitivo.",
+                16: "Tu centro representa la Torre: la fortaleza para derribar estructuras obsoletas y construir realidades completamente auténticas sobre bases verdaderas.",
+                17: "Tu centro está guiado por la Estrella: la inspiración, el talento artístico, el reconocimiento personal y la esperanza inagotable que ilumina a quienes te rodean.",
+                18: "Tu centro energético representa la Luna: el poder de la imaginación, la alta sensibilidad intuitiva y la capacidad de manifestar los sueños más profundos.",
+                19: "Tu centro está regido por el Sol: la alegría radiante, el éxito compartido, la energía vital desbordante y la claridad mental.",
+                20: "Tu centro representa el Juicio: la reconexión con el propósito del linaje familiar, la renovación espiritual y el llamado a despertar tu máxima conciencia.",
+                21: "Tu centro energético representa el Mundo: la realización integral, la visión global sin fronteras y la capacidad de alcanzar la plenitud total en tus proyectos.",
+                22: "Tu centro está conectado con el Loco: la libertad absoluta de espíritu, la confianza en el universo y la capacidad de iniciar caminos audaces sin miedos."
             };
 
-            document.getElementById('freeDescE').textContent = descriptionsE[E] || "Tu centro energético revela un camino único de equilibrio, fuerza personal y transformación profunda.";
+            const adviceE = {
+                1: "Para mantener tu energía alta, enfócate en concretar tus ideas mediante planes escritos sin dispersar tu atención.",
+                2: "Dedica momentos diarios al silencio y la meditación; tus decisiones más acertadas vendrán de tu corazonada más serena.",
+                3: "Rodéate de ambientes estéticamente armónicos y confía en tu capacidad natural para generar prosperidad.",
+                4: "Evita el rigidez extrema; la verdadera autoridad se ejerce con flexibilidad y empatía hacia los demás.",
+                5: "Comparte lo que aprendes con otros; tu crecimiento personal se multiplica cuando enseñas a tu comunidad.",
+                6: "Prioriza tus relaciones desde el respeto propio y evita buscar la aprobación externa para tus decisiones.",
+                7: "Define objetivos claros a medio plazo y celebra cada victoria alcanzada en el camino.",
+                8: "Mantén una perspectiva ecuánime y evita juzgarte duramente cuando las cosas no salgan según lo planeado.",
+                9: "Reserva tiempo a solas para recargar tus baterías emocionales sin aislarte del contacto amoroso.",
+                10: "Acepta los giros del destino como oportunidades de crecimiento y confía en los tiempos del universo.",
+                11: "Practica el autocuidado físico y utiliza el ejercicio para canalizar el exceso de tensión o energía acumulada.",
+                12: "Establece límites claros en tu vocación de ayuda para no agotar tus propios recursos emocionales.",
+                13: "Acepta los cierres de ciclo con gratitud para abrir espacio inmediato a lo nuevo que debe entrar a tu vida.",
+                14: "Busca actividades artísticas o meditativas que promuevan la paz interior y la calma.",
+                15: "Utiliza tu enorme poder de atracción con ética y enfócalo en proyectos de alto valor para ti y los tuyos.",
+                16: "Ve las crisis temporales como oportunidades de limpieza energética para liberarte de lo superfluo.",
+                17: "No temas mostrar tu talento al mundo; tu brillo natural está diseñado para inspirar a otros.",
+                18: "Canaliza tu sensibilidad a través del arte, la escritura o la creación visual para estructurar tus ideas.",
+                19: "Comparte tu entusiasmo e ilumina tus grupos de trabajo o familia con tu actitud positiva.",
+                20: "Sana los vínculos del pasado y perdona viejas historias para liberar toda tu potencia creativa.",
+                21: "Expande tus horizontes sin ponerte límites geográficos ni mentales en tus metas.",
+                22: "Mantén siempre viva tu capacidad de asombro y confía en que cada paso te lleva al lugar correcto."
+            };
 
-            // Mostrar la sección de resultados
+            document.getElementById('freeDescE').textContent = descriptionsE[E] || "Tu centro energético revela un camino de evolución personal y armonía interior.";
+            document.getElementById('freeAdviceE').textContent = adviceE[E] || "Mantén tus prácticas de conexión diaria para integrar de forma óptima tu arcana central.";
+
+            // Mostrar resultados
             document.getElementById('resultsSection').classList.remove('hidden');
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Función para redirigir a tus Checkout de Stripe
+        // Redirección directa a Stripe
         function openCheckoutModal(price) {
             let stripeLink17 = "https://buy.stripe.com/00wcN5dT35R47jAenKa3u00";
             let stripeLink29 = "https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01";
@@ -612,8 +525,6 @@
                 window.open(stripeLink17, '_blank');
             } else if (price === '29.99') {
                 window.open(stripeLink29, '_blank');
-            } else {
-                alert("Selecciona un plan válido.");
             }
         }
 
