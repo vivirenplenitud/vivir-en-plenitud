@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- FREE REVEALED POINT E CARD (AMPLIADO Y COMPLETO) -->
+            <!-- FREE REVEALED POINT E CARD -->
             <div class="bg-white border-2 border-plenitud-gold/40 p-4 sm:p-6 rounded-2xl shadow-sm space-y-4">
                 <div class="flex items-center gap-3 border-b border-plenitud-border pb-3">
                     <span class="w-9 h-9 rounded-full bg-plenitud-goldSoft text-plenitud-gold border border-plenitud-gold/30 flex items-center justify-center font-bold font-cinzel text-lg">
@@ -376,7 +376,7 @@
                         </button>
                     </div>
 
-                    <!-- Complete Option (ACTUALIZADO A 40,00 € Y TEXTO MODIFICADO) -->
+                    <!-- Complete Option -->
                     <div class="bg-plenitud-rosaviejoSoft border border-plenitud-rosaviejo/40 p-4 rounded-xl flex flex-col justify-between relative">
                         <div>
                             <div class="flex justify-between items-start mb-2">
@@ -553,10 +553,10 @@
             document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Redirección directa a Stripe
+        // Redirección con los dos enlaces de Stripe proporcionados
         function openCheckoutModal(price) {
             let stripeLink17 = "https://buy.stripe.com/00wcN5dT35R47jAenKa3u00";
-            let stripeLink40 = "https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01"; // Enlace asignado al plan completo
+            let stripeLink40 = "https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01";
 
             if (price === '17.99') {
                 window.open(stripeLink17, '_blank');
