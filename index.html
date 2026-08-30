@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
 <title>YO VIVO EN PLENITUD | Mapa Energético</title>
 
 <style>
 
-:root{
-    --crema:#faf7f2;
-    --blanco:#fffdf9;
-    --texto:#332b28;
-    --texto-suave:#756862;
+/* =====================================================
+   PALETA
+===================================================== */
 
-    --rosa:#b96d77;
-    --rosa-claro:#f4e4e5;
+:root{
+
+    --crema:#faf7f2;
+
+    --blanco:#fffdf9;
+
+    --texto:#302825;
+
+    --texto-suave:#756963;
+
+    --rosa:#b96f78;
+
+    --rosa-claro:#f3e2e4;
 
     --terracota:#c98276;
-    --terracota-claro:#f3dfda;
 
-    --dorado:#c79a35;
-    --dorado-claro:#f6ebcf;
+    --terracota-claro:#f2ddd8;
 
-    --borde:#dfd3ca;
+    --dorado:#c49a3a;
+
+    --dorado-claro:#f7edcf;
+
+    --borde:#ded2ca;
+
 }
+
+
+/* =====================================================
+   BASE
+===================================================== */
 
 *{
     box-sizing:border-box;
@@ -35,444 +57,810 @@ html{
 }
 
 body{
+
     margin:0;
+
     background:var(--crema);
+
     color:var(--texto);
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
 }
 
+
+/* =====================================================
+   CABECERA
+===================================================== */
+
 header{
+
     background:var(--blanco);
-    border-bottom:1px solid var(--borde);
-    padding:18px 16px;
+
+    border-bottom:
+    1px solid var(--borde);
+
+    padding:16px 14px;
+
 }
 
 .header-inner{
-    max-width:1100px;
+
+    max-width:1000px;
+
     margin:auto;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
+
 }
 
 .logo{
+
     font-family:Georgia,serif;
-    font-size:clamp(26px,5vw,44px);
-    line-height:.95;
-    letter-spacing:1px;
+
+    font-size:
+    clamp(27px,5vw,43px);
+
+    line-height:.94;
+
+    letter-spacing:.7px;
+
 }
 
 .logo span{
+
     color:var(--rosa);
+
 }
 
 .badge{
-    border:1px solid var(--dorado);
-    color:#9d741c;
+
+    border:
+    1px solid var(--dorado);
+
+    color:#9c741b;
+
     background:#fffdf6;
+
     border-radius:30px;
-    padding:11px 18px;
+
+    padding:10px 17px;
+
     font-weight:bold;
+
     white-space:nowrap;
+
 }
 
+
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
 main{
+
     width:100%;
-    max-width:1100px;
+
+    max-width:1000px;
+
     margin:auto;
-    padding:18px 12px 35px;
+
+    padding:
+    16px 10px 35px;
+
 }
 
 .card{
+
     background:var(--blanco);
-    border:1px solid var(--borde);
-    border-radius:22px;
-    padding:20px;
-    margin-bottom:16px;
-    box-shadow:0 3px 12px rgba(80,55,40,.05);
+
+    border:
+    1px solid var(--borde);
+
+    border-radius:20px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    box-shadow:
+    0 3px 12px
+    rgba(70,45,35,.05);
+
 }
 
+
+/* =====================================================
+   TITULOS
+===================================================== */
+
 .title{
+
     font-family:Georgia,serif;
-    font-size:clamp(28px,5vw,42px);
+
+    font-size:
+    clamp(28px,5vw,42px);
+
     text-align:center;
+
     margin:0;
+
 }
 
 .subtitle{
+
     text-align:center;
+
     color:var(--texto-suave);
-    margin:8px 0 20px;
+
+    margin:
+    7px 0 18px;
+
+    font-size:14px;
+
 }
 
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
 .form-grid{
+
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:10px;
+
+    grid-template-columns:
+    1fr 1fr 1fr;
+
+    gap:9px;
+
 }
 
 label{
+
     display:block;
+
     font-size:12px;
+
     color:var(--texto-suave);
+
     margin-bottom:5px;
+
 }
 
 input,
 select{
+
     width:100%;
-    padding:13px 10px;
-    border:1px solid #d7cbc2;
-    border-radius:12px;
-    background:white;
+
+    padding:12px 9px;
+
+    border:
+    1px solid #d6cac1;
+
+    border-radius:11px;
+
+    background:#fff;
+
     color:var(--texto);
+
     font-size:16px;
+
 }
 
 .calculate{
+
     width:100%;
-    margin-top:12px;
+
+    margin-top:11px;
+
     padding:15px;
+
     border:0;
+
     border-radius:12px;
+
     background:var(--rosa);
-    color:white;
+
+    color:#fff;
+
     font-weight:800;
+
     font-size:15px;
+
     cursor:pointer;
+
 }
 
-/* ================================
+
+/* =====================================================
    MATRIZ / ESTRELLA
-================================ */
+===================================================== */
 
 .matrix-card{
-    padding:14px;
+
+    padding:10px;
+
 }
 
 .matrix-title{
+
     font-family:Georgia,serif;
+
     text-align:center;
-    font-size:clamp(24px,5vw,34px);
-    margin:5px 0 12px;
+
+    font-size:
+    clamp(24px,5vw,34px);
+
+    margin:
+    5px 0 10px;
+
 }
 
 .matrix-container{
+
     width:100%;
-    max-width:820px;
+
+    max-width:800px;
+
     margin:auto;
+
 }
 
 .matrix-container svg{
+
     display:block;
+
     width:100%;
+
     height:auto;
+
 }
+
+
+/* Letras */
 
 .matrix-letter{
+
     font-family:Georgia,serif;
+
     font-weight:bold;
-    fill:#332b28;
+
+    fill:#302825;
+
 }
+
+
+/* Etiquetas */
 
 .matrix-label{
+
     font-family:Arial,sans-serif;
+
     font-weight:bold;
+
     fill:#765c56;
-    letter-spacing:.4px;
+
 }
 
-.matrix-small{
-    font-family:Arial,sans-serif;
-    fill:#776963;
-}
 
-.lock-text{
-    font-family:Arial,sans-serif;
-    font-size:16px;
-}
+/* Nota */
 
 .matrix-note{
+
     text-align:center;
+
     color:var(--texto-suave);
+
     font-size:12px;
-    margin:5px auto 2px;
+
+    line-height:1.5;
+
+    margin:
+    5px auto 2px;
+
+    max-width:700px;
+
 }
 
-/* ================================
+
+/* =====================================================
    ESENCIA
-================================ */
+===================================================== */
 
 .essence-card{
-    border:1.5px solid var(--dorado);
+
+    border:
+    1.5px solid var(--dorado);
+
     background:#fffdf8;
+
 }
 
 .essence-header{
+
     display:flex;
+
     align-items:center;
-    gap:16px;
+
+    gap:15px;
+
 }
 
 .essence-circle{
-    width:82px;
-    height:82px;
+
+    width:78px;
+
+    height:78px;
+
     flex:none;
 
-    border:2px solid var(--dorado);
+    border:
+    2px solid var(--dorado);
+
     border-radius:50%;
 
+    background:#fffaf0;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-family:Georgia,serif;
-    font-size:48px;
-    color:#a47718;
+
+    font-size:45px;
+
+    font-weight:bold;
+
+    color:#9d741b;
+
 }
 
 .essence-title{
+
     font-family:Georgia,serif;
-    color:#9c741c;
-    font-size:23px;
+
+    color:#9d741b;
+
+    font-size:22px;
+
     margin:0;
+
 }
 
 .essence-number{
+
     font-family:Georgia,serif;
-    font-size:52px;
+
+    font-size:50px;
+
     font-weight:bold;
+
     color:#a47718;
+
     line-height:1;
-    margin-top:4px;
+
+    margin-top:5px;
+
 }
 
+
+/* Texto de esencia */
+
 .essence-box{
+
     margin-top:17px;
+
     background:var(--rosa-claro);
-    border:1px solid #e2c4c7;
+
+    border:
+    1px solid #e0c3c7;
+
     border-radius:15px;
+
     padding:17px;
+
 }
 
 .essence-box strong{
-    color:#a34f5b;
-    font-size:13px;
-}
 
-.essence-box p{
-    margin:9px 0 0;
-    line-height:1.6;
+    color:#9e505b;
+
     font-size:14px;
+
+    display:block;
+
 }
 
-/* ================================
+#essenceText{
+
+    white-space:pre-line;
+
+    margin-top:10px;
+
+    line-height:1.7;
+
+    font-size:14px;
+
+    color:#453a36;
+
+}
+
+
+/* =====================================================
    LEYENDA
-================================ */
+===================================================== */
 
 .legend{
+
     display:flex;
+
     flex-wrap:wrap;
+
     justify-content:center;
-    gap:10px 20px;
+
+    gap:9px 18px;
 
     background:#fffafa;
-    border:1px solid #e4cdd0;
+
+    border:
+    1px solid #e2cdd0;
+
     border-radius:14px;
 
-    padding:13px;
-    margin-bottom:16px;
+    padding:12px;
+
+    margin-bottom:15px;
 
     font-size:12px;
+
     color:#6d625e;
+
 }
 
 .legend-item{
+
     display:flex;
+
     align-items:center;
-    gap:6px;
+
+    gap:5px;
+
 }
 
-.legend-circle{
-    width:14px;
-    height:14px;
-    border-radius:50%;
-    background:var(--rosa-claro);
-    border:1.5px solid var(--rosa);
-}
 
-/* ================================
+/* =====================================================
    OFERTAS
-================================ */
+===================================================== */
 
 .offers{
+
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:13px;
+
 }
 
 .offer{
-    border:1px solid #dfbdc2;
-    border-radius:18px;
-    padding:19px;
+
+    border:
+    1px solid #dfbdc2;
+
+    border-radius:17px;
+
+    padding:18px;
+
     background:#fff8f8;
+
 }
 
 .offer.complete{
+
     border-color:#dfc77f;
+
     background:#fffdf5;
+
 }
 
 .offer h3{
+
     font-family:Georgia,serif;
+
     margin:0;
+
     font-size:20px;
-    color:#a64e59;
+
+    color:#a34f5b;
+
 }
 
 .offer.complete h3{
-    color:#a47718;
+
+    color:#9c741b;
+
 }
 
 .price{
+
     font-family:Georgia,serif;
-    font-size:36px;
+
+    font-size:35px;
+
     font-weight:bold;
-    margin:7px 0;
-    color:#a64e59;
+
+    margin:
+    6px 0;
+
+    color:#a34f5b;
+
 }
 
 .complete .price{
-    color:#a47718;
+
+    color:#9c741b;
+
 }
 
 .offer ul{
-    margin:8px 0;
+
+    margin:
+    8px 0;
+
     padding-left:19px;
+
     line-height:1.7;
+
     font-size:13px;
+
 }
 
 .buy{
+
     display:block;
+
     text-align:center;
+
     text-decoration:none;
+
     color:white;
+
     background:var(--rosa);
-    border-radius:12px;
-    padding:13px 10px;
+
+    border-radius:11px;
+
+    padding:13px 9px;
+
     font-size:12px;
+
     font-weight:800;
-    margin-top:14px;
+
+    margin-top:13px;
+
 }
 
 .complete .buy{
+
     background:var(--dorado);
+
 }
+
+
+/* =====================================================
+   PIE
+===================================================== */
 
 footer{
+
     text-align:center;
+
     padding:20px;
+
     color:#887a73;
+
     font-size:11px;
+
 }
 
-/* ================================
-   MÓVIL
-================================ */
+
+/* =====================================================
+   MOVIL
+===================================================== */
 
 @media(max-width:650px){
 
     header{
-        padding:14px 10px;
+
+        padding:
+        13px 9px;
+
     }
 
     .header-inner{
+
         align-items:flex-start;
+
     }
 
     .logo{
-        font-size:27px;
+
+        font-size:26px;
+
     }
 
     .badge{
-        font-size:11px;
-        padding:8px 10px;
+
+        font-size:10px;
+
+        padding:
+        8px 9px;
+
     }
 
     main{
-        padding:9px 7px 25px;
+
+        padding:
+        8px 6px 25px;
+
     }
 
     .card{
-        padding:12px;
+
+        padding:11px;
+
         border-radius:17px;
+
     }
 
     .form-grid{
+
         gap:6px;
+
     }
 
     input,
     select{
-        padding:11px 6px;
+
+        padding:
+        11px 6px;
+
         font-size:14px;
+
     }
 
     .matrix-card{
-        padding:7px;
+
+        padding:5px;
+
+        overflow:hidden;
+
     }
 
     .matrix-title{
+
         font-size:23px;
+
     }
 
     .essence-header{
+
         align-items:flex-start;
+
     }
 
     .essence-circle{
-        width:65px;
-        height:65px;
-        font-size:38px;
+
+        width:64px;
+
+        height:64px;
+
+        font-size:37px;
+
     }
 
     .essence-title{
+
         font-size:18px;
+
     }
 
     .essence-number{
-        font-size:43px;
+
+        font-size:42px;
+
     }
 
     .essence-box{
+
         padding:13px;
+
+    }
+
+    #essenceText{
+
+        font-size:13.5px;
+
+        line-height:1.65;
+
     }
 
     .offers{
+
         grid-template-columns:1fr;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOVIL MUY PEQUEÑO
+===================================================== */
+
+@media(max-width:380px){
+
+    .logo{
+
+        font-size:23px;
+
+    }
+
+    .badge{
+
+        font-size:9px;
+
+    }
+
+    .matrix-title{
+
+        font-size:21px;
+
     }
 
 }
 
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     CABECERA
+===================================================== -->
 
 <header>
 
 <div class="header-inner">
 
 <div class="logo">
+
 YO VIVO EN<br>
+
 <span>PLENITUD</span>
+
 </div>
 
+
 <div class="badge">
+
 ✦ Mapa Energético
+
 </div>
 
 </div>
@@ -480,36 +868,51 @@ YO VIVO EN<br>
 </header>
 
 
+
 <main>
 
 
-<!-- ================================
+<!-- =====================================================
      CALCULADORA
-================================ -->
+===================================================== -->
 
 <section class="card">
 
+
 <h1 class="title">
+
 MAPA ENERGÉTICO
+
 </h1>
 
+
 <p class="subtitle">
+
 Introduce tu fecha de nacimiento y descubre tu Número de Esencia.
+
 </p>
 
 
 <form id="calcForm">
 
+
 <div class="form-grid">
 
+
 <div>
+
 <label>Día</label>
 
 <select id="day" required>
-<option value="">Día</option>
+
+<option value="">
+Día
+</option>
+
 </select>
 
 </div>
+
 
 
 <div>
@@ -518,24 +921,62 @@ Introduce tu fecha de nacimiento y descubre tu Número de Esencia.
 
 <select id="month" required>
 
-<option value="">Mes</option>
+<option value="">
+Mes
+</option>
 
-<option value="1">Enero (1)</option>
-<option value="2">Febrero (2)</option>
-<option value="3">Marzo (3)</option>
-<option value="4">Abril (4)</option>
-<option value="5">Mayo (5)</option>
-<option value="6">Junio (6)</option>
-<option value="7">Julio (7)</option>
-<option value="8">Agosto (8)</option>
-<option value="9">Septiembre (9)</option>
-<option value="10">Octubre (10)</option>
-<option value="11">Noviembre (11)</option>
-<option value="12">Diciembre (12)</option>
+<option value="1">
+Enero (1)
+</option>
+
+<option value="2">
+Febrero (2)
+</option>
+
+<option value="3">
+Marzo (3)
+</option>
+
+<option value="4">
+Abril (4)
+</option>
+
+<option value="5">
+Mayo (5)
+</option>
+
+<option value="6">
+Junio (6)
+</option>
+
+<option value="7">
+Julio (7)
+</option>
+
+<option value="8">
+Agosto (8)
+</option>
+
+<option value="9">
+Septiembre (9)
+</option>
+
+<option value="10">
+Octubre (10)
+</option>
+
+<option value="11">
+Noviembre (11)
+</option>
+
+<option value="12">
+Diciembre (12)
+</option>
 
 </select>
 
 </div>
+
 
 
 <div>
@@ -553,39 +994,52 @@ required
 
 </div>
 
+
 </div>
 
 
-<button class="calculate" type="submit">
+<button
+class="calculate"
+type="submit"
+>
+
 ✦ CALCULAR MI MAPA ENERGÉTICO
+
 </button>
 
+
 </form>
+
 
 </section>
 
 
 
-<!-- ================================
-     ESTRELLA / MATRIZ
-================================ -->
+<!-- =====================================================
+     MATRIZ / ESTRELLA
+===================================================== -->
 
 <section class="card matrix-card">
 
+
 <h2 class="matrix-title">
+
 TU MAPA ENERGÉTICO
+
 </h2>
 
 
 <div class="matrix-container">
 
+
 <svg
 viewBox="0 0 760 720"
 xmlns="http://www.w3.org/2000/svg"
-aria-label="Matriz energética de A a T"
+aria-label="Matriz energética"
 >
 
-<!-- CÍRCULO EXTERIOR -->
+
+<!-- CIRCULO EXTERIOR -->
 
 <circle
 cx="380"
@@ -598,17 +1052,19 @@ stroke-dasharray="5 7"
 />
 
 
-<!-- ROMBO PRINCIPAL -->
+
+<!-- ROMBO -->
 
 <polygon
 points="380,55 660,350 380,645 100,350"
 fill="none"
-stroke="#332b28"
+stroke="#332825"
 stroke-width="4"
 />
 
 
-<!-- CUADRADO INTERIOR -->
+
+<!-- CUADRADO -->
 
 <rect
 x="205"
@@ -616,32 +1072,38 @@ y="175"
 width="350"
 height="350"
 fill="none"
-stroke="#c79a35"
+stroke="#c49a3a"
 stroke-width="2"
 />
 
 
-<!-- EJES -->
+
+<!-- EJE VERTICAL -->
 
 <line
 x1="380"
 y1="55"
 x2="380"
 y2="645"
-stroke="#c79a35"
+stroke="#c49a3a"
 stroke-width="2"
 stroke-dasharray="7 7"
 />
+
+
+
+<!-- EJE HORIZONTAL -->
 
 <line
 x1="100"
 y1="350"
 x2="660"
 y2="350"
-stroke="#c79a35"
+stroke="#c49a3a"
 stroke-width="2"
 stroke-dasharray="7 7"
 />
+
 
 
 <!-- DIAGONALES -->
@@ -651,7 +1113,7 @@ x1="175"
 y1="145"
 x2="585"
 y2="555"
-stroke="#d39a98"
+stroke="#d19a97"
 stroke-width="1.5"
 />
 
@@ -660,9 +1122,10 @@ x1="585"
 y1="145"
 x2="175"
 y2="555"
-stroke="#d39a98"
+stroke="#d19a97"
 stroke-width="1.5"
 />
+
 
 
 <!-- EDADES -->
@@ -673,42 +1136,59 @@ font-size="13"
 text-anchor="middle"
 >
 
-<text x="380" y="22">20 años</text>
+<text x="380" y="22">
+20 años
+</text>
 
-<text x="706" y="350">40 años</text>
+<text x="706" y="350">
+40 años
+</text>
 
-<text x="380" y="680">60 años</text>
+<text x="380" y="680">
+60 años
+</text>
 
-<text x="42" y="350">0 años</text>
+<text x="42" y="350">
+0 años
+</text>
 
-<text x="145" y="105">10 años</text>
+<text x="145" y="105">
+10 años
+</text>
 
-<text x="615" y="105">30 años</text>
+<text x="615" y="105">
+30 años
+</text>
 
-<text x="615" y="600">50 años</text>
+<text x="615" y="600">
+50 años
+</text>
 
-<text x="145" y="600">70 años</text>
+<text x="145" y="600">
+70 años
+</text>
 
 </g>
 
 
-<!-- ==========================
+
+<!-- =====================================================
      A PERSONALIDAD
-========================== -->
+===================================================== -->
 
 <circle
 cx="100"
 cy="350"
 r="32"
-fill="#f4e4e5"
-stroke="#b96d77"
+fill="#f3e2e4"
+stroke="#b96f78"
 stroke-width="3"
 />
 
 <text
 x="100"
-y="357"
-font-size="28"
+y="359"
+font-size="29"
 text-anchor="middle"
 class="matrix-letter"
 >
@@ -717,8 +1197,8 @@ A
 
 <text
 x="100"
-y="307"
-font-size="16"
+y="311"
+font-size="17"
 text-anchor="middle"
 >
 🔒
@@ -726,8 +1206,8 @@ text-anchor="middle"
 
 <text
 x="100"
-y="397"
-font-size="12"
+y="398"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
@@ -735,23 +1215,24 @@ PERSONALIDAD
 </text>
 
 
-<!-- ==========================
+
+<!-- =====================================================
      B ESPIRITUALIDAD
-========================== -->
+===================================================== -->
 
 <circle
 cx="380"
 cy="55"
 r="32"
-fill="#f4e4e5"
-stroke="#b96d77"
+fill="#f3e2e4"
+stroke="#b96f78"
 stroke-width="3"
 />
 
 <text
 x="380"
-y="62"
-font-size="28"
+y="64"
+font-size="29"
 text-anchor="middle"
 class="matrix-letter"
 >
@@ -760,8 +1241,8 @@ B
 
 <text
 x="380"
-y="13"
-font-size="16"
+y="14"
+font-size="17"
 text-anchor="middle"
 >
 🔒
@@ -770,7 +1251,7 @@ text-anchor="middle"
 <text
 x="380"
 y="103"
-font-size="12"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
@@ -778,23 +1259,24 @@ ESPIRITUALIDAD
 </text>
 
 
-<!-- ==========================
-     C TALENTO MATERIAL
-========================== -->
+
+<!-- =====================================================
+     C TALENTO
+===================================================== -->
 
 <circle
 cx="660"
 cy="350"
 r="32"
-fill="#f4e4e5"
-stroke="#b96d77"
+fill="#f3e2e4"
+stroke="#b96f78"
 stroke-width="3"
 />
 
 <text
 x="660"
-y="357"
-font-size="28"
+y="359"
+font-size="29"
 text-anchor="middle"
 class="matrix-letter"
 >
@@ -803,8 +1285,8 @@ C
 
 <text
 x="660"
-y="307"
-font-size="16"
+y="311"
+font-size="17"
 text-anchor="middle"
 >
 🔒
@@ -812,32 +1294,33 @@ text-anchor="middle"
 
 <text
 x="660"
-y="397"
-font-size="12"
+y="398"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
-TALENTO MATERIAL
+TALENTO
 </text>
 
 
-<!-- ==========================
-     D COLA KÁRMICA
-========================== -->
+
+<!-- =====================================================
+     D COLA KARMICA
+===================================================== -->
 
 <circle
 cx="380"
 cy="645"
 r="32"
-fill="#f4e4e5"
-stroke="#b96d77"
+fill="#f3e2e4"
+stroke="#b96f78"
 stroke-width="3"
 />
 
 <text
 x="380"
-y="652"
-font-size="28"
+y="654"
+font-size="29"
 text-anchor="middle"
 class="matrix-letter"
 >
@@ -847,7 +1330,7 @@ D
 <text
 x="380"
 y="697"
-font-size="16"
+font-size="17"
 text-anchor="middle"
 >
 🔒
@@ -855,8 +1338,8 @@ text-anchor="middle"
 
 <text
 x="380"
-y="713"
-font-size="12"
+y="714"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
@@ -864,26 +1347,27 @@ COLA KÁRMICA
 </text>
 
 
-<!-- ==========================
-     E ESENCIA - GRATIS
-========================== -->
+
+<!-- =====================================================
+     E ESENCIA
+===================================================== -->
 
 <circle
 cx="380"
 cy="350"
-r="45"
-fill="#fffdf5"
-stroke="#c79a35"
+r="47"
+fill="#fffaf0"
+stroke="#c49a3a"
 stroke-width="4"
 />
 
 <text
 x="380"
-y="334"
+y="333"
 font-family="Georgia,serif"
-font-size="19"
+font-size="18"
 font-weight="bold"
-fill="#9d741c"
+fill="#9d741b"
 text-anchor="middle"
 >
 E
@@ -892,11 +1376,11 @@ E
 <text
 id="svgEssence"
 x="380"
-y="370"
+y="371"
 font-family="Georgia,serif"
 font-size="34"
 font-weight="bold"
-fill="#9d741c"
+fill="#9d741b"
 text-anchor="middle"
 >
 —
@@ -905,269 +1389,390 @@ text-anchor="middle"
 <text
 x="380"
 y="410"
-font-size="12"
+font-size="11"
 font-weight="bold"
-fill="#9d741c"
+fill="#9d741b"
 text-anchor="middle"
 >
 ESENCIA
 </text>
 
 
-<!-- ==========================
+
+<!-- =====================================================
      F
-========================== -->
-
-<circle cx="175" cy="135" r="24"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="175" y="143"
-font-size="21"
-text-anchor="middle"
-class="matrix-letter">
-F
-</text>
-
-
-<!-- G -->
-
-<circle cx="585" cy="135" r="24"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="585" y="143"
-font-size="21"
-text-anchor="middle"
-class="matrix-letter">
-G
-</text>
-
-
-<!-- H -->
-
-<circle cx="585" cy="565" r="24"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="585" y="573"
-font-size="21"
-text-anchor="middle"
-class="matrix-letter">
-H
-</text>
-
-
-<!-- I -->
-
-<circle cx="175" cy="565" r="24"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="175" y="573"
-font-size="21"
-text-anchor="middle"
-class="matrix-letter">
-I
-</text>
-
-
-<!-- J -->
-
-<circle cx="285" cy="250" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="285" y="257"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-J
-</text>
-
-
-<!-- K -->
-
-<circle cx="475" cy="250" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="475" y="257"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-K
-</text>
-
-
-<!-- L -->
-
-<circle cx="475" cy="450" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="475" y="457"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-L
-</text>
-
-
-<!-- M -->
-
-<circle cx="285" cy="450" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="285" y="457"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-M
-</text>
-
-
-<!-- N -->
-
-<circle cx="380" cy="565" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="380" y="572"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-N
-</text>
-
-
-<!-- O -->
-
-<circle cx="180" cy="350" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="180" y="357"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-O
-</text>
-
-
-<!-- P -->
-
-<circle cx="380" cy="135" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="380" y="142"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-P
-</text>
-
-
-<!-- Q -->
-
-<circle cx="580" cy="350" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="580" y="357"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-Q
-</text>
-
-
-<!-- R -->
-
-<circle cx="515" cy="350" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="515" y="357"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-R
-</text>
-
-
-<!-- S -->
-
-<circle cx="245" cy="350" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="245" y="357"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-S
-</text>
-
-
-<!-- T -->
-
-<circle cx="380" cy="250" r="22"
-fill="#fffdf9"
-stroke="#d5c8c0"
-stroke-width="2"/>
-
-<text x="380" y="257"
-font-size="19"
-text-anchor="middle"
-class="matrix-letter">
-T
-</text>
-
-
-<!-- ==========================
-     R1 AMOR
-========================== -->
+===================================================== -->
 
 <circle
-cx="430"
-cy="425"
-r="26"
-fill="#f4e4e5"
-stroke="#b96d77"
+cx="175"
+cy="135"
+r="24"
+fill="#fffdf9"
+stroke="#c98276"
 stroke-width="2"
 />
 
 <text
-x="430"
-y="433"
-font-size="17"
+x="175"
+y="143"
+font-size="22"
 text-anchor="middle"
+class="matrix-letter"
+>
+F
+</text>
+
+
+
+<!-- G -->
+
+<circle
+cx="585"
+cy="135"
+r="24"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="585"
+y="143"
+font-size="22"
+text-anchor="middle"
+class="matrix-letter"
+>
+G
+</text>
+
+
+
+<!-- H -->
+
+<circle
+cx="585"
+cy="565"
+r="24"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="585"
+y="573"
+font-size="22"
+text-anchor="middle"
+class="matrix-letter"
+>
+H
+</text>
+
+
+
+<!-- I -->
+
+<circle
+cx="175"
+cy="565"
+r="24"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="175"
+y="573"
+font-size="22"
+text-anchor="middle"
+class="matrix-letter"
+>
+I
+</text>
+
+
+
+<!-- J -->
+
+<circle
+cx="285"
+cy="250"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="285"
+y="258"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+J
+</text>
+
+
+
+<!-- K -->
+
+<circle
+cx="475"
+cy="250"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="475"
+y="258"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+K
+</text>
+
+
+
+<!-- L -->
+
+<circle
+cx="475"
+cy="450"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="475"
+y="458"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+L
+</text>
+
+
+
+<!-- M -->
+
+<circle
+cx="285"
+cy="450"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="285"
+y="458"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+M
+</text>
+
+
+
+<!-- N -->
+
+<circle
+cx="380"
+cy="565"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="380"
+y="573"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+N
+</text>
+
+
+
+<!-- O -->
+
+<circle
+cx="180"
+cy="350"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="180"
+y="358"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+O
+</text>
+
+
+
+<!-- P -->
+
+<circle
+cx="380"
+cy="135"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="380"
+y="143"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+P
+</text>
+
+
+
+<!-- Q -->
+
+<circle
+cx="580"
+cy="350"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="580"
+y="358"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+Q
+</text>
+
+
+
+<!-- R -->
+
+<circle
+cx="515"
+cy="350"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="515"
+y="358"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+R
+</text>
+
+
+
+<!-- S -->
+
+<circle
+cx="245"
+cy="350"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="245"
+y="358"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+S
+</text>
+
+
+
+<!-- T -->
+
+<circle
+cx="380"
+cy="250"
+r="23"
+fill="#fffdf9"
+stroke="#c98276"
+stroke-width="2"
+/>
+
+<text
+x="380"
+y="258"
+font-size="20"
+text-anchor="middle"
+class="matrix-letter"
+>
+T
+</text>
+
+
+
+<!-- =====================================================
+     R1 AMOR
+===================================================== -->
+
+<circle
+cx="430"
+cy="425"
+r="27"
+fill="#f3e2e4"
+stroke="#b96f78"
+stroke-width="2.5"
+/>
+
+<text
+x="430"
+y="434"
+font-size="17"
 font-weight="bold"
+text-anchor="middle"
 >
 R1
 </text>
 
 <text
 x="430"
-y="393"
-font-size="14"
+y="392"
+font-size="15"
 text-anchor="middle"
 >
 🔒
@@ -1175,8 +1780,8 @@ text-anchor="middle"
 
 <text
 x="430"
-y="470"
-font-size="12"
+y="471"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
@@ -1184,33 +1789,34 @@ AMOR
 </text>
 
 
-<!-- ==========================
+
+<!-- =====================================================
      R2 DINERO
-========================== -->
+===================================================== -->
 
 <circle
 cx="475"
 cy="390"
-r="26"
-fill="#f4e4e5"
-stroke="#b96d77"
-stroke-width="2"
+r="27"
+fill="#f3e2e4"
+stroke="#b96f78"
+stroke-width="2.5"
 />
 
 <text
 x="475"
-y="398"
+y="399"
 font-size="17"
-text-anchor="middle"
 font-weight="bold"
+text-anchor="middle"
 >
 R2
 </text>
 
 <text
 x="475"
-y="358"
-font-size="14"
+y="357"
+font-size="15"
 text-anchor="middle"
 >
 🔒
@@ -1219,7 +1825,7 @@ text-anchor="middle"
 <text
 x="475"
 y="435"
-font-size="12"
+font-size="11"
 text-anchor="middle"
 class="matrix-label"
 >
@@ -1227,27 +1833,32 @@ DINERO
 </text>
 
 
-<!-- SÍMBOLOS -->
+
+<!-- CORAZON -->
 
 <text
 x="430"
-y="490"
-font-size="27"
+y="495"
+font-size="28"
 text-anchor="middle"
-fill="#b96d77"
+fill="#b96f78"
 >
 ♥
 </text>
 
+
+<!-- DINERO -->
+
 <text
 x="480"
-y="455"
-font-size="27"
+y="460"
+font-size="28"
 text-anchor="middle"
-fill="#c79a35"
+fill="#c49a3a"
 >
 $
 </text>
+
 
 </svg>
 
@@ -1255,120 +1866,190 @@ $
 
 
 <p class="matrix-note">
-🔒 A, B, C, D, R1 y R2 se desarrollan en las lecturas de pago.
-El punto E —tu Esencia— se muestra gratuitamente.
+
+🔒 Los puntos A, B, C, D, R1 y R2 forman parte de la lectura de pago.
+Tu Número de Esencia E se muestra gratuitamente.
+
 </p>
+
 
 </section>
 
 
 
-<!-- ================================
+<!-- =====================================================
      ESENCIA GRATUITA
-================================ -->
+===================================================== -->
 
 <section class="card essence-card">
 
+
 <div class="essence-header">
 
+
 <div class="essence-circle">
+
 E
+
 </div>
+
 
 <div>
 
 <h2 class="essence-title">
+
 TU NÚMERO DE ESENCIA
+
 </h2>
+
 
 <div
 id="essenceNumber"
-class="essence-number">
+class="essence-number"
+>
+
 —
-</div>
 
 </div>
 
 </div>
+
+
+</div>
+
 
 
 <div class="essence-box">
 
+
 <strong id="essenceTitle">
+
 SIGNIFICADO DE TU ESENCIA
+
 </strong>
 
-<p id="essenceText">
+
+<div id="essenceText">
+
 Introduce tu fecha de nacimiento para conocer el significado de tu Número de Esencia.
-</p>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
 
-<!-- ================================
+<!-- =====================================================
      LEYENDA
-================================ -->
+===================================================== -->
 
 <div class="legend">
 
-<div class="legend-item">
-<span class="legend-circle"></span>
-Punto de la matriz
-</div>
 
 <div class="legend-item">
-🔒 Contenido bloqueado
+
+🔒
+
+Contenido bloqueado
+
 </div>
+
 
 <div class="legend-item">
-♥ Amor
+
+E
+
+Esencia gratuita
+
 </div>
+
 
 <div class="legend-item">
-$ Dinero
+
+♥
+
+Amor
+
 </div>
+
 
 <div class="legend-item">
-E = Esencia gratuita
-</div>
+
+$
+
+Dinero
 
 </div>
 
 
+<div class="legend-item">
 
-<!-- ================================
+A–T
+
+Matriz energética
+
+</div>
+
+
+</div>
+
+
+
+<!-- =====================================================
      OFERTAS
-================================ -->
+===================================================== -->
 
 <section class="offers">
 
 
+<!-- 17,99 -->
+
 <div class="offer">
 
+
 <h3>
-🔒 LECTURA PUNTOS CLAVE
+
+🔒 PUNTOS CLAVE
+
 </h3>
 
+
 <div class="price">
+
 17,99 €
+
 </div>
+
 
 <ul>
 
-<li><b>A</b> Personalidad</li>
+<li>
+<b>A</b> · Personalidad
+</li>
 
-<li><b>B</b> Espiritualidad</li>
+<li>
+<b>B</b> · Espiritualidad
+</li>
 
-<li><b>C</b> Talento Material</li>
+<li>
+<b>C</b> · Talento
+</li>
 
-<li><b>D</b> Cola Kármica</li>
+<li>
+<b>D</b> · Cola Kármica
+</li>
 
-<li><b>R1</b> Canal del Amor</li>
+<li>
+<b>R1</b> · Amor
+</li>
 
-<li><b>R2</b> Canal del Dinero</li>
+<li>
+<b>R2</b> · Dinero
+</li>
 
 </ul>
 
@@ -1379,34 +2060,56 @@ href="https://buy.stripe.com/00wcN5dT35R47jAenKa3u00"
 target="_blank"
 rel="noopener noreferrer"
 >
-OBTENER PUNTOS CLAVE — 17,99 €
+
+OBTENER PUNTOS CLAVE · 17,99 €
+
 </a>
+
 
 </div>
 
 
+
+<!-- 40 -->
 
 <div class="offer complete">
 
+
 <h3>
-🔒 LECTURA COMPLETA
+
+✦ MATRIZ COMPLETA
+
 </h3>
 
+
 <div class="price">
+
 40,00 €
+
 </div>
+
 
 <ul>
 
-<li>Todos los puntos de la matriz <b>A a T</b></li>
+<li>
+Todos los puntos de la matriz <b>A–T</b>
+</li>
 
-<li>Análisis profundo de cada número</li>
+<li>
+Interpretación de cada número
+</li>
 
-<li>Interpretación integral del mapa</li>
+<li>
+Análisis integral de tu mapa
+</li>
 
-<li>Guía personalizada</li>
+<li>
+Lectura personalizada
+</li>
 
-<li>Informe PDF descargable</li>
+<li>
+Informe PDF
+</li>
 
 </ul>
 
@@ -1417,10 +2120,14 @@ href="https://buy.stripe.com/eVq9AT6qBfrE5bsa7ua3u01"
 target="_blank"
 rel="noopener noreferrer"
 >
-OBTENER LECTURA COMPLETA — 40,00 €
+
+OBTENER MATRIZ COMPLETA · 40 €
+
 </a>
 
+
 </div>
+
 
 </section>
 
@@ -1428,9 +2135,10 @@ OBTENER LECTURA COMPLETA — 40,00 €
 </main>
 
 
+
 <footer>
 
-© 2026 YO VIVO EN PLENITUD · Todos los derechos reservados
+© 2026 YO VIVO EN PLENITUD
 
 </footer>
 
@@ -1438,17 +2146,26 @@ OBTENER LECTURA COMPLETA — 40,00 €
 
 <script>
 
-/* ================================
-   DÍAS
-================================ */
 
-const daySelect=document.getElementById("day");
+/* =====================================================
+   CREAR DIAS
+===================================================== */
 
-for(let i=1;i<=31;i++){
+const daySelect =
+document.getElementById("day");
 
-    const option=document.createElement("option");
+
+for(
+let i=1;
+i<=31;
+i++
+){
+
+    const option =
+    document.createElement("option");
 
     option.value=i;
+
     option.textContent=i;
 
     daySelect.appendChild(option);
@@ -1457,63 +2174,243 @@ for(let i=1;i<=31;i++){
 
 
 
-/* ================================
-   ESENCIAS
-================================ */
+/* =====================================================
+   TEXTOS DE ESENCIA
+===================================================== */
 
 const essenceTexts={
 
-1:"La Esencia 1 habla de iniciativa, independencia y capacidad para abrir caminos. Tu aprendizaje está en confiar en tu propio criterio y expresar tu potencial con decisión.",
 
-2:"La Esencia 2 se relaciona con sensibilidad, intuición, cooperación y capacidad para percibir matices. Tu aprendizaje es cuidar tus vínculos sin olvidarte de ti.",
+1:
+`Tu Esencia 1 habla de una personalidad con impulso de independencia, iniciativa y capacidad para abrir caminos. En lo profundo necesitas sentir que estás tomando tus propias decisiones y que tu vida tiene una dirección elegida por ti. Tienes potencial para comenzar proyectos, tomar la iniciativa y convertir una idea en una realidad cuando confías en tus capacidades.
 
-3:"La Esencia 3 se asocia con creatividad, expresión y comunicación. Tu energía crece cuando das espacio a tu voz y permites que tus talentos se expresen.",
+LUZ: liderazgo, determinación, autonomía, valentía y capacidad para comenzar de nuevo. Sueles crecer cuando dejas de esperar aprobación y reconoces tu propio valor.
 
-4:"La Esencia 4 representa estructura, constancia y capacidad para construir. Tu fortaleza aparece cuando creas bases firmes sin convertir la estabilidad en rigidez.",
+SOMBRA: impaciencia, querer hacerlo todo sola, dificultad para pedir ayuda o sentir que tienes que demostrar constantemente que puedes.
 
-5:"La Esencia 5 habla de libertad, movimiento y aprendizaje a través de la experiencia. Tu reto es unir libertad con dirección y elegir sin dispersarte.",
+APRENDIZAJE: liderar sin aislarte y ser independiente sin cargar con todo.`,
 
-6:"La Esencia 6 se relaciona con amor, armonía y cuidado. Tu aprendizaje es comprender que cuidar a otros no significa cargar con todo y que también mereces recibir.",
 
-7:"La Esencia 7 representa introspección, búsqueda de sentido y sabiduría interior. Necesitas espacios de silencio para comprenderte, sin aislarte de la vida.",
+2:
+`Tu Esencia 2 habla de sensibilidad, intuición, cooperación y una gran capacidad para percibir lo que ocurre a tu alrededor. Eres una persona que puede captar emociones, ambientes y pequeños detalles que otros pasan por alto. Tu energía necesita vínculos donde exista confianza, respeto y reciprocidad.
 
-8:"La Esencia 8 habla de poder personal, organización y capacidad de materializar. Tu equilibrio está en utilizar tu fuerza con conciencia.",
+LUZ: empatía, diplomacia, intuición, capacidad de escuchar y sensibilidad emocional. Puedes ser un puente entre personas y aportar calma cuando existe tensión.
 
-9:"La Esencia 9 se relaciona con sabiduría, sensibilidad y visión amplia. Tu aprendizaje es cerrar ciclos y transformar la experiencia en comprensión.",
+SOMBRA: exceso de sensibilidad, miedo al rechazo, indecisión o tendencia a adaptarte demasiado a las necesidades de los demás.
 
-10:"La Esencia 10 simboliza ciclos, cambios y capacidad de adaptación. Tu fortaleza está en aprovechar los giros de la vida con confianza.",
+APRENDIZAJE: escuchar a los demás sin dejar de escuchar tu propia voz.`,
 
-11:"La Esencia 11 se asocia con inspiración, intuición y fuerza interior. Posees una sensibilidad elevada y una capacidad especial para inspirar y elevar a otros desde tu propia experiencia.",
 
-12:"La Esencia 12 representa empatía y capacidad para mirar una situación desde otra perspectiva. Tu aprendizaje es ayudar sin colocarte siempre en segundo lugar.",
+3:
+`Tu Esencia 3 habla de creatividad, expresión, comunicación y necesidad de disfrutar de la vida. Hay en ti una energía que busca expresarse, ya sea hablando, escribiendo, creando, enseñando o compartiendo aquello que llevas dentro.
 
-13:"La Esencia 13 habla de transformación, cierre de etapas y renacimiento. Tienes capacidad para reconstruirte y comenzar de nuevo desde bases más auténticas.",
+LUZ: alegría, creatividad, comunicación, espontaneidad y capacidad para inspirar a través de tu forma de expresarte.
 
-14:"La Esencia 14 representa equilibrio, adaptación e integración. Tu energía funciona mejor cuando encuentras un ritmo sostenible.",
+SOMBRA: dispersión, necesidad de aprobación, dificultad para terminar lo que comienzas o esconder lo que realmente sientes detrás de una apariencia de fortaleza.
 
-15:"La Esencia 15 se relaciona con magnetismo, intensidad y poder de elección. Tu aprendizaje es reconocer tus apegos y elegir desde la libertad.",
+APRENDIZAJE: convertir tu creatividad en algo concreto y confiar en tu propia voz.`,
 
-16:"La Esencia 16 habla de liberación, cambios profundos y reconstrucción. Tu fortaleza aparece cuando utilizas las transformaciones para crear algo más auténtico.",
 
-17:"La Esencia 17 representa inspiración, esperanza y autenticidad. Tu energía crece cuando confías en tus talentos y permites que tu propia luz sea visible.",
+4:
+`Tu Esencia 4 habla de estructura, estabilidad, responsabilidad y capacidad para construir algo sólido. Necesitas sentir que aquello que haces tiene una base firme y que puedes confiar en lo que has construido.
 
-18:"La Esencia 18 se relaciona con intuición, imaginación y sensibilidad. Tu aprendizaje es diferenciar intuición de miedo y buscar claridad.",
+LUZ: disciplina, responsabilidad, organización, perseverancia y capacidad para crear seguridad.
 
-19:"La Esencia 19 representa vitalidad, alegría y capacidad de irradiar energía. Tu reto es permitirte brillar sin sentir que debes demostrar constantemente tu valor.",
+SOMBRA: rigidez, exceso de control, miedo a los cambios o asumir más responsabilidades de las que realmente te corresponden.
 
-20:"La Esencia 20 habla de despertar y revisión del pasado. Tu aprendizaje es escuchar tu propia voz y elegir tu camino conscientemente.",
+APRENDIZAJE: tener una estructura sin sentir que tienes que controlarlo todo.`,
 
-21:"La Esencia 21 representa integración, expansión y cierre de procesos. Tienes capacidad para unir experiencias y ver una imagen más completa.",
 
-22:"La Esencia 22 simboliza libertad, espontaneidad y nuevos comienzos. Tu aprendizaje es conservar la libertad sin perder dirección."
+5:
+`Tu Esencia 5 habla de libertad, movimiento, curiosidad y necesidad de experimentar. Tu energía difícilmente florece cuando sientes que estás atrapada en una vida demasiado rígida o repetitiva.
+
+LUZ: adaptación, curiosidad, comunicación, capacidad para reinventarte y valentía para explorar nuevas experiencias.
+
+SOMBRA: impulsividad, dispersión, aburrimiento rápido o dificultad para mantener compromisos cuando dejan de resultar estimulantes.
+
+APRENDIZAJE: descubrir que la verdadera libertad también necesita dirección y responsabilidad.`,
+
+
+6:
+`Tu Esencia 6 habla de amor, cuidado, armonía, responsabilidad afectiva y necesidad de crear vínculos significativos. Durante mucho tiempo puedes haber sentido que cuidar, resolver y sostener a otros era una parte importante de tu identidad.
+
+LUZ: generosidad, sensibilidad, protección, capacidad para crear armonía y profundo sentido del compromiso.
+
+SOMBRA: cargar con problemas ajenos, querer salvar a todo el mundo, perfeccionismo o sentir culpa cuando eliges tus propias necesidades.
+
+APRENDIZAJE: cuidar sin rescatar, amar sin controlar y dar sin olvidarte de recibir.`,
+
+
+7:
+`Tu Esencia 7 habla de introspección, análisis, intuición y búsqueda de respuestas profundas. No eres una energía que se conforme fácilmente con lo superficial: necesitas comprender, investigar y encontrar un significado detrás de lo que vives.
+
+LUZ: sabiduría, observación, intuición, profundidad y capacidad para aprender de la experiencia.
+
+SOMBRA: aislamiento, exceso de pensamiento, desconfianza o tendencia a analizar tanto una situación que terminas alejándote de lo que sientes.
+
+APRENDIZAJE: equilibrar mente e intuición y recordar que no todo necesita ser comprendido antes de ser vivido.`,
+
+
+8:
+`Tu Esencia 8 habla de poder personal, capacidad de organización, liderazgo y relación con la prosperidad material. Existe en ti una energía que busca resultados y que puede transformar esfuerzo, experiencia y visión en algo concreto.
+
+LUZ: determinación, capacidad de gestión, ambición saludable, fortaleza y talento para materializar objetivos.
+
+SOMBRA: necesidad de controlar, exigencia excesiva, valorar tu propio éxito solamente por resultados externos o confundir fortaleza con dureza.
+
+APRENDIZAJE: ejercer tu poder sin perder sensibilidad y entender que prosperar también significa vivir en equilibrio.`,
+
+
+9:
+`Tu Esencia 9 habla de sensibilidad, experiencia, comprensión y capacidad para cerrar ciclos. Sueles aprender profundamente de aquello que has vivido y, con el tiempo, puedes transformar experiencias difíciles en sabiduría.
+
+LUZ: compasión, generosidad, madurez, comprensión y capacidad para acompañar a otros desde la experiencia.
+
+SOMBRA: vivir demasiado en el pasado, dificultad para soltar personas o situaciones, sacrificio excesivo o querer solucionar problemas que ya no te corresponden.
+
+APRENDIZAJE: cerrar ciclos sin sentir que estás perdiendo una parte de ti.`,
+
+
+10:
+`Tu Esencia 10 habla de ciclos, movimiento, cambios y capacidad de adaptación. Tu vida puede llevarte por etapas muy diferentes, y una de tus grandes enseñanzas consiste en comprender que un cambio no siempre significa perder algo.
+
+LUZ: capacidad de adaptación, iniciativa, confianza y habilidad para aprovechar oportunidades cuando aparecen.
+
+SOMBRA: miedo a la incertidumbre, querer controlar los acontecimientos o depender demasiado de que las circunstancias externas sean favorables.
+
+APRENDIZAJE: participar activamente en tus cambios en lugar de esperar a que la vida decida por ti.`,
+
+
+11:
+`Tu Esencia 11 habla de intuición, inspiración, sensibilidad elevada y una poderosa capacidad para percibir aquello que no siempre puede explicarse con lógica. Es una energía que puede llevarte a vivir grandes momentos de claridad, pero también a sentir con mucha intensidad.
+
+Cuando aprendes a confiar en tu percepción sin dejarte dominar por el miedo, tu sensibilidad se convierte en una fortaleza.
+
+LUZ: intuición, inspiración, visión, creatividad, sensibilidad y capacidad para despertar algo en otras personas. Puedes transmitir ideas, emociones o experiencias que llegan profundamente cuando hablas desde la autenticidad.
+
+SOMBRA: sobrepensar, ansiedad ante la incertidumbre, dudas sobre tu propio potencial o sentirte desbordada por lo que percibes.
+
+APRENDIZAJE: aprender a canalizar tu sensibilidad, confiar en tu intuición y convertir tu experiencia en conciencia.
+
+MENSAJE DE TU ESENCIA: no necesitas apagar tu sensibilidad para ser fuerte. Tu verdadera fuerza aparece cuando aprendes a sostener todo lo que eres sin dejar que tus emociones decidan por ti.`,
+
+
+12:
+`Tu Esencia 12 habla de empatía, sensibilidad y capacidad para observar una situación desde una perspectiva diferente. Puedes comprender fácilmente las necesidades de otras personas y, precisamente por eso, necesitas vigilar la tendencia a colocarte siempre en segundo lugar.
+
+LUZ: empatía, comprensión, paciencia, capacidad de adaptación y sensibilidad hacia los demás.
+
+SOMBRA: sacrificio, esperar demasiado, sentirte víctima de las circunstancias o posponer tus propias necesidades.
+
+APRENDIZAJE: dejar de confundir amor con sacrificio y comenzar a elegirte sin sentir culpa.`,
+
+
+13:
+`Tu Esencia 13 habla de transformación profunda, cierres y renacimientos. Es una energía que puede llevarte a atravesar etapas en las que una versión antigua de ti deja de funcionar para que puedas construir otra más auténtica.
+
+LUZ: transformación, fortaleza, capacidad de renacer, determinación y valentía para cambiar lo que ya no funciona.
+
+SOMBRA: miedo a soltar, resistencia al cambio o permanecer demasiado tiempo en situaciones conocidas por temor a lo desconocido.
+
+APRENDIZAJE: comprender que cerrar una etapa no significa fracasar: significa permitir que otra pueda comenzar.`,
+
+
+14:
+`Tu Esencia 14 habla de equilibrio, adaptación, libertad responsable y capacidad para integrar diferentes partes de tu vida.
+
+LUZ: flexibilidad, comunicación, adaptación, capacidad para conciliar y encontrar soluciones equilibradas.
+
+SOMBRA: excesos, impulsividad, dificultad para mantener límites o pasar de un extremo a otro.
+
+APRENDIZAJE: disfrutar de la libertad sin perder estabilidad y construir hábitos que permitan sostener aquello que deseas.`,
+
+
+15:
+`Tu Esencia 15 habla de magnetismo, intensidad, deseo, poder personal y capacidad de influencia. Existe una fuerza importante en tu manera de relacionarte con la vida y con los demás.
+
+LUZ: carisma, pasión, creatividad, fuerza de voluntad y capacidad para influir positivamente.
+
+SOMBRA: apegos, dependencia emocional, necesidad de control, tentaciones o dificultad para soltar aquello que proporciona seguridad inmediata.
+
+APRENDIZAJE: elegir desde la libertad y no desde la necesidad.`,
+
+
+16:
+`Tu Esencia 16 habla de cambios profundos, derribo de estructuras antiguas y reconstrucción. Puede aparecer cuando la vida te obliga a revisar aquello que creías seguro para descubrir una verdad más auténtica.
+
+LUZ: capacidad de despertar, reconstruirte, reconocer verdades y comenzar desde bases más auténticas.
+
+SOMBRA: orgullo, resistencia, miedo a perder el control o aferrarte a estructuras que ya dejaron de funcionar.
+
+APRENDIZAJE: comprender que algunas pérdidas también pueden abrir espacio para una vida más alineada contigo.`,
+
+
+17:
+`Tu Esencia 17 habla de esperanza, inspiración, autenticidad y capacidad para recuperar la ilusión después de etapas difíciles.
+
+LUZ: inspiración, creatividad, esperanza, autenticidad y capacidad para motivar a otros.
+
+SOMBRA: idealizar demasiado, esperar reconocimiento externo o compararte con otras personas.
+
+APRENDIZAJE: dejar de buscar permiso para brillar y confiar en el valor de tu propio camino.`,
+
+
+18:
+`Tu Esencia 18 habla de intuición, imaginación, sensibilidad y un mundo emocional muy rico. Puedes percibir ambientes y emociones con intensidad, pero necesitas aprender a diferenciar lo que realmente intuyes de aquello que nace del miedo o de experiencias pasadas.
+
+LUZ: imaginación, intuición, creatividad y sensibilidad.
+
+SOMBRA: inseguridad, miedo, confusión emocional o interpretar situaciones desde suposiciones.
+
+APRENDIZAJE: buscar claridad antes de sacar conclusiones y confiar en tu intuición sin permitir que el temor la distorsione.`,
+
+
+19:
+`Tu Esencia 19 habla de vitalidad, alegría, autenticidad y capacidad para irradiar una energía cálida.
+
+LUZ: optimismo, vitalidad, confianza, creatividad y capacidad para inspirar.
+
+SOMBRA: necesidad de reconocimiento, orgullo, dificultad para mostrar vulnerabilidad o sentir que debes ser fuerte todo el tiempo.
+
+APRENDIZAJE: comprender que brillar no significa tener que demostrar nada.`,
+
+
+20:
+`Tu Esencia 20 habla de despertar, revisión de experiencias y capacidad para escuchar una llamada interior. Puede marcar etapas en las que comienzas a mirar tu historia con otros ojos.
+
+LUZ: conciencia, renovación, capacidad para aprender del pasado y comenzar una nueva etapa con mayor claridad.
+
+SOMBRA: vivir pendiente del pasado, juzgarte demasiado o esperar una señal externa para tomar decisiones.
+
+APRENDIZAJE: perdonarte, cerrar lo pendiente y permitirte responder a lo que realmente quieres vivir ahora.`,
+
+
+21:
+`Tu Esencia 21 habla de integración, expansión, madurez y capacidad para comprender el recorrido completo de una experiencia.
+
+LUZ: visión global, madurez, capacidad de integración, expansión y sensación de plenitud cuando reconoces todo lo que has aprendido.
+
+SOMBRA: dificultad para cerrar ciclos, exigirte llegar a la perfección o pensar que siempre falta algo para sentirte satisfecha.
+
+APRENDIZAJE: reconocer lo que ya has construido y permitirte avanzar sin esperar que todo sea perfecto.`,
+
+
+22:
+`Tu Esencia 22 habla de libertad, espontaneidad, curiosidad y capacidad para comenzar caminos diferentes. Existe en ti una energía que no quiere vivir encerrada en expectativas ajenas.
+
+LUZ: creatividad, espontaneidad, libertad, capacidad para reinventarte y valentía para explorar caminos nuevos.
+
+SOMBRA: impulsividad, falta de dirección, escapar de responsabilidades o comenzar muchas cosas sin terminar ninguna.
+
+APRENDIZAJE: conservar tu libertad mientras desarrollas la disciplina necesaria para convertir tus ideas en realidad.`
 
 };
 
 
 
-/* ================================
-   REDUCCIÓN
-================================ */
+/* =====================================================
+   REDUCIR NUMERO A 22
+===================================================== */
 
 function reduceTo22(number){
 
@@ -1524,7 +2421,8 @@ function reduceTo22(number){
         n=String(n)
         .split("")
         .reduce(
-            (total,digit)=>total+Number(digit),
+            (total,digit)=>
+            total+Number(digit),
             0
         );
 
@@ -1535,44 +2433,67 @@ function reduceTo22(number){
 }
 
 
+
+/* =====================================================
+   SUMAR DIGITOS
+===================================================== */
+
 function sumDigits(number){
 
     return String(number)
-        .split("")
-        .reduce(
-            (total,digit)=>total+Number(digit),
-            0
-        );
+    .split("")
+    .reduce(
+        (total,digit)=>
+        total+Number(digit),
+        0
+    );
 
 }
 
 
 
-/* ================================
-   CALCULAR
-================================ */
+/* =====================================================
+   CALCULAR MAPA
+===================================================== */
 
 document
 .getElementById("calcForm")
-.addEventListener("submit",function(event){
+.addEventListener(
+"submit",
+function(event){
 
     event.preventDefault();
 
 
-    const day=Number(
-        document.getElementById("day").value
-    );
-
-    const month=Number(
-        document.getElementById("month").value
-    );
-
-    const year=Number(
-        document.getElementById("year").value
+    const day=
+    Number(
+        document
+        .getElementById("day")
+        .value
     );
 
 
-    if(!day || !month || !year){
+    const month=
+    Number(
+        document
+        .getElementById("month")
+        .value
+    );
+
+
+    const year=
+    Number(
+        document
+        .getElementById("year")
+        .value
+    );
+
+
+    if(
+        !day ||
+        !month ||
+        !year
+    ){
 
         return;
 
@@ -1580,73 +2501,101 @@ document
 
 
     /*
-       Fórmula actual:
+
+       Cálculo:
 
        A = día
        B = mes
        C = suma de dígitos del año
-       D = A+B+C
-       E = A+B+C+D
+       D = A + B + C
+       E = A + B + C + D
+
     */
 
-    const A=reduceTo22(day);
 
-    const B=reduceTo22(month);
+    const A=
+    reduceTo22(day);
 
-    const C=reduceTo22(
+
+    const B=
+    reduceTo22(month);
+
+
+    const C=
+    reduceTo22(
         sumDigits(year)
     );
 
-    const D=reduceTo22(
+
+    const D=
+    reduceTo22(
         A+B+C
     );
 
-    const E=reduceTo22(
+
+    const E=
+    reduceTo22(
         A+B+C+D
     );
 
 
-    /*
-       MOSTRAR ESENCIA
-    */
+    /* MOSTRAR E */
 
     document
-    .getElementById("essenceNumber")
+    .getElementById(
+        "essenceNumber"
+    )
     .textContent=E;
 
 
     document
-    .getElementById("svgEssence")
+    .getElementById(
+        "svgEssence"
+    )
     .textContent=E;
 
 
+    /* TITULO */
+
     document
-    .getElementById("essenceTitle")
+    .getElementById(
+        "essenceTitle"
+    )
     .textContent=
     "SIGNIFICADO DE TU ESENCIA "+E;
 
 
+    /* TEXTO */
+
     document
-    .getElementById("essenceText")
+    .getElementById(
+        "essenceText"
+    )
     .textContent=
     essenceTexts[E] ||
-    "Tu Número de Esencia representa la energía central desde la que expresas tus talentos y tu potencial.";
+    "Tu Número de Esencia representa una parte central de tu mapa energético.";
 
 
-    /*
-       LLEVAR A LA ESENCIA
-    */
+    /* IR AL RESULTADO */
 
     document
-    .querySelector(".essence-card")
+    .querySelector(
+        ".essence-card"
+    )
     .scrollIntoView({
+
         behavior:"smooth",
+
         block:"start"
+
     });
 
 });
 
+
 </script>
 
+
 </body>
+
 </html>
